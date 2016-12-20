@@ -5,7 +5,9 @@ const baseUrl_produccion = 'https://pago.culqi.com/api/v1';
 
 const paths = {
   crearToken: '/tokens',
-  crearCargo: '/cargos'
+  crearCargo: '/cargos',
+  consultarCargo: '/cargos',
+  crearPlan: '/planes'
 }
 
 const _createPromise = (url, method, headers, body, validateParams) => {
@@ -33,8 +35,8 @@ const _createPromise = (url, method, headers, body, validateParams) => {
       if (error) {
         return reject(error);
       }
-      
-      return resolve(response, body);
+
+      return resolve(response);
     })
   })
 }
@@ -60,23 +62,45 @@ class Culqi {
   }
 
   crearToken (params) {
-    console.log('-------- crearToken --------');
+    /*console.log('-------- crearToken --------');
     console.log('url: ', this.baseUrl + paths.crearToken);
-    console.log('params: ', params);
+    console.log('params: ', params);*/
     
     const url = this.baseUrl + paths.crearToken;
     const fields = ["correo_electronico", "nombre", "apellido", "numero", "cvv", "m_exp", "a_exp", "guardar"];
 
-    return _createPromise(url, 'POST', this._headers, params, fields);
+    return _createPromise(url, 'POST', Object.assign({},this._headers, {'Authorization': 'Bearer ' + this.codigo_comercio}), params, fields);
   }
 
   crearCargo (params) {
-    console.log('-------- crearCargo --------');
+    /*console.log('-------- crearCargo --------');
     console.log('url: ', this.baseUrl + paths.crearCargo);
-    console.log('params: ', params);
+    console.log('params: ', params);*/
     
     const url = this.baseUrl + paths.crearCargo;
     const fields = ["token", "moneda", "monto", "descripcion", "pedido", "codigo_pais", "ciudad", "usuario", "direccion", "telefono", "nombres", "apellidos", "correo_electronico"];
+
+    return _createPromise(url, 'POST', this._headers, params, fields);
+  }
+
+  consultarCargo (params) {
+    /*console.log('-------- consultarCargo --------');
+    console.log('url: ', this.baseUrl + paths.consultarCargo + '/' + params.id);
+    console.log('params: ', params);*/
+    
+    const url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+
+    return _createPromise(url, 'GET', this._headers, params);
+  }
+
+  crearPlan (params) {
+    console.log('-------- crearPlan --------');
+    console.log('url: ', this.baseUrl + paths.crearPlan);
+    params.codigo_comercio = this.codigo_comercio;
+    console.log('params: ', params);
+    
+    const url = this.baseUrl + paths.crearPlan;
+    const fields = ["moneda", "monto", "id", "periodo", "nombre", "intervalo", "gracia", "gracia_medida", "ciclos"];
 
     return _createPromise(url, 'POST', this._headers, params, fields);
   }

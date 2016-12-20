@@ -15,7 +15,9 @@ var baseUrl_produccion = 'https://pago.culqi.com/api/v1';
 
 var paths = {
   crearToken: '/tokens',
-  crearCargo: '/cargos'
+  crearCargo: '/cargos',
+  consultarCargo: '/cargos',
+  crearPlan: '/planes'
 };
 
 var _createPromise = function _createPromise(url, method, headers, body, validateParams) {
@@ -23,8 +25,6 @@ var _createPromise = function _createPromise(url, method, headers, body, validat
 
     if (validateParams && body) {
       var keys = Object.keys(body);
-
-      //console.log('body', body);   
 
       for (var i in validateParams) {
         if (keys.indexOf(validateParams[i]) == -1) {
@@ -44,7 +44,7 @@ var _createPromise = function _createPromise(url, method, headers, body, validat
         return reject(error);
       }
 
-      return resolve(response, body);
+      return resolve(response);
     });
   });
 };
@@ -57,12 +57,10 @@ var Culqi = function () {
     this.llave_comercio = llave_comercio;
     this.baseUrl = baseUrl_integracion;
 
-    // Validate env
     if (env && (env.toLowerCase() == 'prod' || env.toLowerCase() == 'produccion')) {
       this.baseUrl = baseUrl_produccion;
     }
 
-    // Set bearer header and others
     this._headers = {
       'Authorization': 'Bearer ' + this.llave_comercio,
       'User-Agent': 'request',
@@ -73,24 +71,39 @@ var Culqi = function () {
   _createClass(Culqi, [{
     key: 'crearToken',
     value: function crearToken(params) {
-      console.log('-------- crearToken --------');
-      console.log('url: ', this.baseUrl + paths.crearToken);
-      console.log('params: ', params);
 
       var url = this.baseUrl + paths.crearToken;
       var fields = ["correo_electronico", "nombre", "apellido", "numero", "cvv", "m_exp", "a_exp", "guardar"];
 
-      return _createPromise(url, 'POST', this._headers, params, fields);
+      return _createPromise(url, 'POST', Object.assign({}, this._headers, { 'Authorization': 'Bearer ' + this.codigo_comercio }), params, fields);
     }
   }, {
     key: 'crearCargo',
     value: function crearCargo(params) {
-      console.log('-------- crearCargo --------');
-      console.log('url: ', this.baseUrl + paths.crearCargo);
-      console.log('params: ', params);
 
       var url = this.baseUrl + paths.crearCargo;
       var fields = ["token", "moneda", "monto", "descripcion", "pedido", "codigo_pais", "ciudad", "usuario", "direccion", "telefono", "nombres", "apellidos", "correo_electronico"];
+
+      return _createPromise(url, 'POST', this._headers, params, fields);
+    }
+  }, {
+    key: 'consultarCargo',
+    value: function consultarCargo(params) {
+
+      var url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+
+      return _createPromise(url, 'GET', this._headers, params);
+    }
+  }, {
+    key: 'crearPlan',
+    value: function crearPlan(params) {
+      console.log('-------- crearPlan --------');
+      console.log('url: ', this.baseUrl + paths.crearPlan);
+      params.codigo_comercio = this.codigo_comercio;
+      console.log('params: ', params);
+
+      var url = this.baseUrl + paths.crearPlan;
+      var fields = ["moneda", "monto", "id", "periodo", "nombre", "intervalo", "gracia", "gracia_medida", "ciclos"];
 
       return _createPromise(url, 'POST', this._headers, params, fields);
     }
@@ -99,8 +112,4 @@ var Culqi = function () {
   return Culqi;
 }();
 
-//Compat mode
-
-
 module.exports = Culqi;
-//export default Culqi;

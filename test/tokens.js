@@ -1,5 +1,5 @@
-var chai = require('chai');
 var Culqi = require('../dist/culqi');
+var chai = require('chai');
 var locals = require('../locals.json') || {};
 var should = chai.should();
 var chaiAsPromised = require('chai-as-promised');
@@ -7,19 +7,10 @@ chai.use(chaiAsPromised);
 
 var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
 
-/*beforeEach(function() {
-  var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
-  return 
-});*/
+describe('Tokens', function() {
 
-describe('Culqi', function() {
-
-  describe('#createToken()', function () {
+  describe('#crearToken()', function () {
     it('should create token', function (done) {
-      /*var arr = [];
-
-      assert.equal(arr.length, 0);*/
-
       culqi
         .crearToken({
           "correo_electronico": "wmuro@me.com",
@@ -30,7 +21,7 @@ describe('Culqi', function() {
           "m_exp": 9,
           "a_exp": 2019,
           "guardar": true
-        }).should.eventually.equal('foo').notify(done);
+        }).should.eventually.have.property('statusCode', 200).notify(done);
     });
   })
   
