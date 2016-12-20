@@ -29,10 +29,12 @@ const _createPromise = (url, method, headers, body, validateParams) => {
     }
     request({ url, method, headers, json: true, body }, (error, response, body) => {
       console.log('----------------------------');
-      if (!error && response.statusCode == 200) {
-        return resolve(body);
+
+      if (error) {
+        return reject(error);
       }
-      return reject(response);
+      
+      return resolve(response, body);
     })
   })
 }

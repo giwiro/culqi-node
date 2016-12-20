@@ -27,29 +27,24 @@ var _createPromise = function _createPromise(url, method, headers, body, validat
       //console.log('body', body);   
 
       for (var i in validateParams) {
-        //console.log(i, validateParams[i], keys.indexOf(validateParams[i]));
         if (keys.indexOf(validateParams[i]) == -1) {
           return reject({
             body: {
               objeto: 'error',
-              mensaje: validateParams[i]
+              mensaje: 'Falta el parámetro: ' + validateParams[i]
             }
           });
         }
       }
     }
-    (0, _request2.default)({
-      url: url,
-      method: method,
-      headers: headers,
-      json: true,
-      body: body
-    }, function (error, response, body) {
+    (0, _request2.default)({ url: url, method: method, headers: headers, json: true, body: body }, function (error, response, body) {
       console.log('----------------------------');
-      if (!error && response.statusCode == 200) {
-        return resolve(body);
+
+      if (error) {
+        return reject(error);
       }
-      return reject(response);
+
+      return resolve(response, body);
     });
   });
 };
@@ -79,11 +74,11 @@ var Culqi = function () {
     key: 'crearToken',
     value: function crearToken(params) {
       console.log('-------- crearToken --------');
-      console.log('url: ', this.baseUrl + paths.crearCargo);
+      console.log('url: ', this.baseUrl + paths.crearToken);
       console.log('params: ', params);
 
-      var url = this.baseUrl + paths.crearCargo;
-      var fields = ["token", "moneda", "monto", "descripcion", "pedido", "codigo_pais", "ciudad", "usuario", "direccion", "telefono", "nombres", "apellidos", "correo_electronico"];
+      var url = this.baseUrl + paths.crearToken;
+      var fields = ["correo_electronico", "nombre", "apellido", "numero", "cvv", "m_exp", "a_exp", "guardar"];
 
       return _createPromise(url, 'POST', this._headers, params, fields);
     }

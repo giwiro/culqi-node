@@ -1,32 +1,37 @@
+var chai = require('chai');
 var Culqi = require('../dist/culqi');
+var locals = require('../locals.json') || {};
+var should = chai.should();
+var chaiAsPromised = require('chai-as-promised');
+chai.use(chaiAsPromised);
 
-var culqi = new Culqi('codigo_comercio', 'api_key', 'env');
+var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
 
-culqi.crearCargo({
-  "token": "vVhhnxxbNpFG8cfEAwhtTfK4g8sf7oOi",
-  "moneda": "PEN",
-  "monto": 19900,
-  "descripcion": "Venta de prueba",
-  "pedido": "11213351",
-  "codigo_pais": "PE",
-  "ciudad": "Lima",
-  "usuario": "71701956",
-  "direccion": "Avenida Lima 1232",
-  "telefono": 12313123,
-  "nombres": "Will",
-  "apellidos": "Muro",
-  "correo_electronico": "wmuro@me.com"
-})
-.then(function (resp) {
-  console.log('crearCargo resp:', resp);
-})
-.catch(function (err) {
+/*beforeEach(function() {
+  var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
+  return 
+});*/
 
-  if (typeof err.body != 'object') {
-    console.log('Bad request');
-    return; 
-  }
+describe('Culqi', function() {
 
-  console.log('error', err.body);
+  describe('#createToken()', function () {
+    it('should create token', function (done) {
+      /*var arr = [];
+
+      assert.equal(arr.length, 0);*/
+
+      culqi
+        .crearToken({
+          "correo_electronico": "wmuro@me.com",
+          "nombre": "William",
+          "apellido": "Muro",
+          "numero": 4444333322221111,
+          "cvv": 123,
+          "m_exp": 9,
+          "a_exp": 2019,
+          "guardar": true
+        }).should.eventually.equal('foo').notify(done);
+    });
+  })
   
-})
+});
