@@ -17,7 +17,10 @@ var paths = {
   crearToken: '/tokens',
   crearCargo: '/cargos',
   consultarCargo: '/cargos',
-  crearPlan: '/planes'
+  devolverCargo: '/cargos',
+  crearPlan: '/planes',
+  crearSuscripcion: '/suscripciones',
+  cancelarSuscripcion: '/suscripcion'
 };
 
 var _createPromise = function _createPromise(url, method, headers, body, validateParams) {
@@ -38,7 +41,6 @@ var _createPromise = function _createPromise(url, method, headers, body, validat
       }
     }
     (0, _request2.default)({ url: url, method: method, headers: headers, json: true, body: body }, function (error, response, body) {
-      console.log('----------------------------');
 
       if (error) {
         return reject(error);
@@ -91,21 +93,50 @@ var Culqi = function () {
     value: function consultarCargo(params) {
 
       var url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+      var fields = ["id"];
 
-      return _createPromise(url, 'GET', this._headers, params);
+      return _createPromise(url, 'GET', this._headers, params, fields);
+    }
+  }, {
+    key: 'devolverCargo',
+    value: function devolverCargo(params) {
+
+      params.codigo_comercio = this.codigo_comercio;
+
+      var url = this.baseUrl + paths.devolverCargo + '/' + params.id + '/devolver';
+      var fields = ["id", "codigo_comercio", "numero_pedido", "monto"];
+
+      return _createPromise(url, 'POST', this._headers, params, fields);
     }
   }, {
     key: 'crearPlan',
     value: function crearPlan(params) {
-      console.log('-------- crearPlan --------');
-      console.log('url: ', this.baseUrl + paths.crearPlan);
+
       params.codigo_comercio = this.codigo_comercio;
-      console.log('params: ', params);
 
       var url = this.baseUrl + paths.crearPlan;
       var fields = ["moneda", "monto", "id", "periodo", "nombre", "intervalo", "gracia", "gracia_medida", "ciclos"];
 
       return _createPromise(url, 'POST', this._headers, params, fields);
+    }
+  }, {
+    key: 'crearSuscripcion',
+    value: function crearSuscripcion(params) {
+
+      var url = this.baseUrl + paths.crearSuscripcion;
+      var fields = ["token", "codigo_pais", "direccion", "ciudad", "usuario", "telefono", "nombre", "apellido", "correo_electronico", "plan_id"];
+
+      return _createPromise(url, 'POST', this._headers, params);
+    }
+  }, {
+    key: 'cancelarSuscripcion',
+    value: function cancelarSuscripcion(params) {
+
+      var url = this.baseUrl + paths.cancelarSuscripcion + '/' + params.id;
+      console.log('url', url);
+      var fields = ["id"];
+
+      return _createPromise(url, 'DELETE', this._headers, params, fields);
     }
   }]);
 

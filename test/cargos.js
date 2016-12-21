@@ -6,14 +6,15 @@ const chaiAsPromised = require('chai-as-promised');
 const shortid = require('shortid');
 chai.use(chaiAsPromised);
 
-var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
+const culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
 
 describe('Cargos', function() {
 
-  describe('#crearCargo()', function () {
+  let token = '';
+  let cargo_id = '';
+  let pedido = '';
 
-    let token = '';
-    let cargo_id = '';
+  describe('#crearCargo()', function () {
 
     it('should generate token', function (done) {
       culqi
@@ -27,13 +28,8 @@ describe('Cargos', function() {
           "a_exp": 2019,
           "guardar": true
         }).then(function (response) {
-          //console.log('statusCode', response.statusCode);
-          
-          //token = body.id;
           response.statusCode.should.equal(200);
-
           token = response.body.id;
-
           done();
         })
         .catch(function (err) {
@@ -43,7 +39,6 @@ describe('Cargos', function() {
     });
 
     it('should create cargo', function (done) {
-      console.log('token', token);
       culqi
         .crearCargo({
           "token": token,
@@ -61,9 +56,8 @@ describe('Cargos', function() {
           "correo_electronico": "wmuro@me.com"
         }).then(function (response) {
           response.statusCode.should.equal(200);
-
           cargo_id = response.body.id;
-
+          pedido = response.body.pedido;
           done();
         })
         .catch(function (err) {
@@ -72,10 +66,25 @@ describe('Cargos', function() {
         });
     });
 
+    
+  })
+
+  describe('#consultarCargo()', function () {
     it('should get cargo', function (done) {
       culqi
         .consultarCargo({
-          id: cargo_id
+          'id': cargo_id
+        }).should.eventually.have.property('statusCode', 200).notify(done);
+    })
+  })
+
+  describe('#devolverCargo()', function () {
+    it('should return cargo', function (done) {
+      culqi
+        .devolverCargo({
+          'id': cargo_id,
+          'numero_pedido': pedido,
+          'monto': 100
         }).should.eventually.have.property('statusCode', 200).notify(done);
     })
   })

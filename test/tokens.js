@@ -1,11 +1,11 @@
-var Culqi = require('../dist/culqi');
+const Culqi = require('../dist/culqi');
 var chai = require('chai');
-var locals = require('../locals.json') || {};
-var should = chai.should();
-var chaiAsPromised = require('chai-as-promised');
+const locals = require('../locals.json') || {};
+const should = chai.should();
+const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 
-var culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
+const culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.env);
 
 describe('Tokens', function() {
 

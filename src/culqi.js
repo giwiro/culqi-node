@@ -7,7 +7,10 @@ const paths = {
   crearToken: '/tokens',
   crearCargo: '/cargos',
   consultarCargo: '/cargos',
-  crearPlan: '/planes'
+  devolverCargo: '/cargos',
+  crearPlan: '/planes',
+  crearSuscripcion: '/suscripciones',
+  cancelarSuscripcion: '/suscripcion'
 }
 
 const _createPromise = (url, method, headers, body, validateParams) => {
@@ -30,7 +33,7 @@ const _createPromise = (url, method, headers, body, validateParams) => {
       }
     }
     request({ url, method, headers, json: true, body }, (error, response, body) => {
-      console.log('----------------------------');
+      //console.log('----------------------------');
 
       if (error) {
         return reject(error);
@@ -62,9 +65,6 @@ class Culqi {
   }
 
   crearToken (params) {
-    /*console.log('-------- crearToken --------');
-    console.log('url: ', this.baseUrl + paths.crearToken);
-    console.log('params: ', params);*/
     
     const url = this.baseUrl + paths.crearToken;
     const fields = ["correo_electronico", "nombre", "apellido", "numero", "cvv", "m_exp", "a_exp", "guardar"];
@@ -73,9 +73,6 @@ class Culqi {
   }
 
   crearCargo (params) {
-    /*console.log('-------- crearCargo --------');
-    console.log('url: ', this.baseUrl + paths.crearCargo);
-    console.log('params: ', params);*/
     
     const url = this.baseUrl + paths.crearCargo;
     const fields = ["token", "moneda", "monto", "descripcion", "pedido", "codigo_pais", "ciudad", "usuario", "direccion", "telefono", "nombres", "apellidos", "correo_electronico"];
@@ -84,26 +81,52 @@ class Culqi {
   }
 
   consultarCargo (params) {
-    /*console.log('-------- consultarCargo --------');
-    console.log('url: ', this.baseUrl + paths.consultarCargo + '/' + params.id);
-    console.log('params: ', params);*/
     
     const url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+    const fields = ["id"];
 
-    return _createPromise(url, 'GET', this._headers, params);
+    return _createPromise(url, 'GET', this._headers, params, fields);
+  }
+
+  devolverCargo (params) {
+
+    params.codigo_comercio = this.codigo_comercio;
+
+    const url = this.baseUrl + paths.devolverCargo + '/' + params.id + '/devolver';
+    const fields = ["id", "codigo_comercio", "numero_pedido", "monto"];
+
+    return _createPromise(url, 'POST', this._headers, params, fields);
   }
 
   crearPlan (params) {
-    console.log('-------- crearPlan --------');
-    console.log('url: ', this.baseUrl + paths.crearPlan);
+
     params.codigo_comercio = this.codigo_comercio;
-    console.log('params: ', params);
     
     const url = this.baseUrl + paths.crearPlan;
     const fields = ["moneda", "monto", "id", "periodo", "nombre", "intervalo", "gracia", "gracia_medida", "ciclos"];
 
     return _createPromise(url, 'POST', this._headers, params, fields);
   }
+
+  crearSuscripcion (params) {
+    
+    const url = this.baseUrl + paths.crearSuscripcion;
+    const fields = ["token", "codigo_pais", "direccion", "ciudad", "usuario", "telefono", "nombre", "apellido", "correo_electronico", "plan_id"];
+
+    return _createPromise(url, 'POST', this._headers, params);
+  }
+
+  cancelarSuscripcion (params) {
+    
+    const url = this.baseUrl + paths.cancelarSuscripcion + '/' + params.id;
+    console.log('url', url);
+    params.codigo_comercio = this.codigo_comercio;
+    const fields = ["id", "codigo_pais", "direccion", "ciudad", "telefono", "nombre", "correo_electronico", "apellido", "usuario", "plan", "token"];
+    
+    return _createPromise(url, 'DELETE', this._headers, params, fields);
+  }
+
+
 }
 
 
