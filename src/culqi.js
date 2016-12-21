@@ -10,7 +10,7 @@ const paths = {
   devolverCargo: '/cargos',
   crearPlan: '/planes',
   crearSuscripcion: '/suscripciones',
-  cancelarSuscripcion: '/suscripcion'
+  cancelarSuscripcion: '/suscripciones'
 }
 
 const _createPromise = (url, method, headers, body, validateParams) => {
@@ -18,8 +18,6 @@ const _createPromise = (url, method, headers, body, validateParams) => {
 
     if (validateParams && body) {
       const keys = Object.keys(body); 
-
-      //console.log('body', body);   
 
       for (let i in validateParams) {
         if (keys.indexOf(validateParams[i]) == -1) {
@@ -32,9 +30,8 @@ const _createPromise = (url, method, headers, body, validateParams) => {
         }
       }
     }
-    request({ url, method, headers, json: true, body }, (error, response, body) => {
-      //console.log('----------------------------');
 
+    request({ url, method, headers, json: true, body }, (error, response, body) => {
       if (error) {
         return reject(error);
       }
@@ -119,7 +116,6 @@ class Culqi {
   cancelarSuscripcion (params) {
     
     const url = this.baseUrl + paths.cancelarSuscripcion + '/' + params.id;
-    console.log('url', url);
     params.codigo_comercio = this.codigo_comercio;
     const fields = ["id", "codigo_pais", "direccion", "ciudad", "telefono", "nombre", "correo_electronico", "apellido", "usuario", "plan", "token"];
     
@@ -130,7 +126,5 @@ class Culqi {
 }
 
 
-
 //Compat mode
 module.exports = Culqi;
-//export default Culqi;

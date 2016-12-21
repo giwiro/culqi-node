@@ -20,7 +20,7 @@ var paths = {
   devolverCargo: '/cargos',
   crearPlan: '/planes',
   crearSuscripcion: '/suscripciones',
-  cancelarSuscripcion: '/suscripcion'
+  cancelarSuscripcion: '/suscripciones'
 };
 
 var _createPromise = function _createPromise(url, method, headers, body, validateParams) {
@@ -40,8 +40,8 @@ var _createPromise = function _createPromise(url, method, headers, body, validat
         }
       }
     }
-    (0, _request2.default)({ url: url, method: method, headers: headers, json: true, body: body }, function (error, response, body) {
 
+    (0, _request2.default)({ url: url, method: method, headers: headers, json: true, body: body }, function (error, response, body) {
       if (error) {
         return reject(error);
       }
@@ -133,8 +133,8 @@ var Culqi = function () {
     value: function cancelarSuscripcion(params) {
 
       var url = this.baseUrl + paths.cancelarSuscripcion + '/' + params.id;
-      console.log('url', url);
-      var fields = ["id"];
+      params.codigo_comercio = this.codigo_comercio;
+      var fields = ["id", "codigo_pais", "direccion", "ciudad", "telefono", "nombre", "correo_electronico", "apellido", "usuario", "plan", "token"];
 
       return _createPromise(url, 'DELETE', this._headers, params, fields);
     }

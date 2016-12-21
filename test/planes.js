@@ -1,6 +1,10 @@
 const Culqi = require('../dist/culqi');
 var chai = require('chai');
-const locals = require('../locals.json') || {};
+const locals = {
+  codigo_comercio: process.env.CODIGO_COMERCIO,
+  llave_comercio: process.env.LLAVE_COMERCIO,
+  env: process.env.ENV
+};
 const should = chai.should();
 const shortid = require('shortid');
 const chaiAsPromised = require('chai-as-promised');

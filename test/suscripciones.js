@@ -1,6 +1,10 @@
 const Culqi = require('../dist/culqi');
 var chai = require('chai');
-const locals = require('../locals.json') || {};
+const locals = {
+  codigo_comercio: process.env.CODIGO_COMERCIO,
+  llave_comercio: process.env.LLAVE_COMERCIO,
+  env: process.env.ENV
+};
 const should = chai.should();
 const shortid = require('shortid');
 const chaiAsPromised = require('chai-as-promised');
@@ -10,9 +14,9 @@ const culqi = new Culqi(locals.codigo_comercio, locals.llave_comercio, locals.en
 
 describe('Suscripciones', function() {
 
-  let token = '';
-  let plan = '';
-  let suscripcion = '';
+  var token = '';
+  var plan = '';
+  var suscripcion = '';
 
   describe('#crearSuscripcion()', function () {
 
@@ -34,7 +38,7 @@ describe('Suscripciones', function() {
         })
         .catch(function (err) {
           console.log('err', err);
-          done();
+          done(err);
         });
     });
 
@@ -58,7 +62,7 @@ describe('Suscripciones', function() {
         })
         .catch(function (err) {
           console.log('err', err);
-          done();
+          done(err);
         });
     });
 
@@ -82,7 +86,7 @@ describe('Suscripciones', function() {
         })
         .catch(function (err) {
           console.log('err', err);
-          done();
+          done(err);
         });
 
     });
@@ -104,17 +108,7 @@ describe('Suscripciones', function() {
           "usuario": "jose@gmail.com",
           "plan": plan,
           "token": "SpjUIHwclWLQJQBW0RJXuJM2kCCAOwh3"
-        })//.should.eventually.have.property('statusCode', 200).notify(done);
-        .then(function (response) {
-          console.log('statusCode', response.statusCode);
-          console.log('cancelarSuscripcion', response.body);
-          response.statusCode.should.equal(200);
-          done();
-        })
-        .catch(function (err) {
-          console.log('err', err);
-          done();
-        });
+        }).should.eventually.have.property('statusCode', 200).notify(done);
     });
   })
   
