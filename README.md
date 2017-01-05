@@ -28,7 +28,7 @@ $ npm install culqi-node
 ```
 
 ### Uso &nbsp;
-```sh
+```javascript
 const Culqi = require('culqi-node');
 
 const culqi = new Culqi(codigo_comercio, llave_comercio, env);
@@ -40,7 +40,9 @@ const culqi = new Culqi(codigo_comercio, llave_comercio, env);
   - `env`             : integ, prod
 
 #####Ejemplo:
-```const culqi = new Culqi('demo', 'JlhLlpOB5s1aS6upiioJkmdQ0OYZ6HLS2+/o4iYO2MQ=', 'integ');```
+```javascript
+const culqi = new Culqi('demo', 'JlhLlpOB5s1aS6upiioJkmdQ0OYZ6HLS2+/o4iYO2MQ=', 'integ');
+```
 
 
 ### Ejemplos de uso de las operaciones &nbsp;
