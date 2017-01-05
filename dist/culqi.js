@@ -1,5 +1,9 @@
 'use strict';
 
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _request = require('request');
@@ -24,7 +28,7 @@ var paths = {
 };
 
 var _createPromise = function _createPromise(url, method, headers, body, validateParams) {
-  return new Promise(function (resolve, reject) {
+  return new _bluebird2.default(function (resolve, reject) {
 
     if (validateParams && body) {
       var keys = Object.keys(body);

@@ -1,4 +1,4 @@
-import request from 'request'
+import request from 'request';
 
 const baseUrl_integracion = 'https://integ-pago.culqi.com/api/v1';
 const baseUrl_produccion = 'https://pago.culqi.com/api/v1';

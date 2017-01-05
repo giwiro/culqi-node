@@ -102,12 +102,12 @@ describe('Suscripciones', function() {
           "direccion": "Avenida Lima 123213",
           "ciudad": "Lima",
           "telefono": "1234567789",
-          "nombre": "Jose",
-          "correo_electronico": "jose@gmail.com",
-          "apellido": "Perez",
-          "usuario": "jose@gmail.com",
+          "nombre": "Jon",
+          "correo_electronico": "soporte@culqi.com",
+          "apellido": "Doe",
+          "usuario": "soporte@culqi.com",
           "plan": plan,
-          "token": "SpjUIHwclWLQJQBW0RJXuJM2kCCAOwh3"
+          "token": token
         }).should.eventually.have.property('statusCode', 200).notify(done);
     });
   })
