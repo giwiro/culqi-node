@@ -1,0 +1,34 @@
+# Test against this version of Node.js
+environment:
+
+  matrix:
+  # node.js
+    - nodejs_version: "7"
+    - nodejs_version: "6"
+    - nodejs_version: "5"
+    - nodejs_version: "4"
+
+  CODIGO_COMERCIO:
+    secure: HPzNNsgJ6ZM3Q2mh0tiGeA==
+  LLAVE_COMERCIO:
+    secure: jQxgKYOeHP2GNI6szpCbLAwj3baO10LWUG4WQWfMwqoUk2vnFtoqv+3nHsMYCqm2
+  ENV:
+    secure: h36A2B9psYVxrgWG5x0IxQ==
+
+# Install scripts. (runs after repo cloning)
+install:
+  # Get the latest stable version of Node.js or io.js
+  - ps: Install-Product node $env:nodejs_version
+  # install modules
+  - npm install
+
+# Post-install test scripts.
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  - npm test
+
+# Don't actually build.
+build: off
