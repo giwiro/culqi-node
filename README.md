@@ -14,6 +14,6 @@ Operaciones disponibles (v1.2 de Culqi):
   * Crear cargo
   * Consultar cargo
   * Crear plan
-  * Crear suscripción
-  * Cancelar suscripción
+  * Crear suscripcion
+  * Cancelar suscripcion
   * Devolver cargo
