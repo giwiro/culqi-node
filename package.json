@@ -44,6 +44,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "shortid": "^2.2.6"
+    "shortid": "^2.2.6",
+    "snyk": "^1.23.2"
   }
 }
