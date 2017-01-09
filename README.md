@@ -9,6 +9,9 @@ Wrapper de los web service de <a href="https://culqi.api-docs.io" />Culqi</a>.
 [![Dependency Status](https://www.versioneye.com/user/projects/585bed370f6ff600485b15e3/badge.svg)](https://www.versioneye.com/user/projects/585bed370f6ff600485b15e3)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/npm.svg)]()
+[![Known Vulnerabilities](https://snyk.io/test/github/giwiro/node-culqi/badge.svg)](https://snyk.io/test/github/giwiro/node-culqi)
+
+[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](http://standardjs.com)
 
 Operaciones disponibles (v1.2 de Culqi):
   * Crear token
@@ -31,12 +34,12 @@ $ npm install culqi-node
 ```javascript
 const Culqi = require('culqi-node');
 
-const culqi = new Culqi(codigo_comercio, llave_comercio, env);
+const culqi = new Culqi(codigoComercio, llaveComercio, env);
 ```
 
 #####Parámetros:
-  - `codigo_comercio` : (proporcionado por culqi)
-  - `llave_comercio`  : (proporcionado por culqi)
+  - `codigoComercio` : (proporcionado por culqi)
+  - `llaveComercio`  : (proporcionado por culqi)
   - `env`             : integ, prod
 
 #####Ejemplo:
