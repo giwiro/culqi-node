@@ -46,7 +46,7 @@ class Culqi {
     this.baseUrl = baseUrlIntegracion;
 
     // Validate env
-    if (env && (env.toLowerCase() === 'prod' || env.toLowerCase() === 'produccion')) {
+    if (env && env.toLowerCase() === 'prod') {
       this.baseUrl = baseUrlProduccion;
     }
 

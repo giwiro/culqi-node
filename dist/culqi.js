@@ -60,7 +60,7 @@ var Culqi = function () {
     this.llaveComercio = llaveComercio;
     this.baseUrl = baseUrlIntegracion;
 
-    if (env && (env.toLowerCase() === 'prod' || env.toLowerCase() === 'produccion')) {
+    if (env && env.toLowerCase() === 'prod') {
       this.baseUrl = baseUrlProduccion;
     }
 

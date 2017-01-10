@@ -14,6 +14,8 @@ environment:
     secure: jQxgKYOeHP2GNI6szpCbLAwj3baO10LWUG4WQWfMwqoUk2vnFtoqv+3nHsMYCqm2
   ENV:
     secure: h36A2B9psYVxrgWG5x0IxQ==
+  SNYK_TOKEN:
+    secure: dNww2ZmbSlumEu7CY8K00hunQsIOutZzW/2HLxYMH8UX+H9fxJA0ZI5O6fG+OFHL
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -30,5 +32,15 @@ test_script:
   # run tests
   - npm test
 
+
 # Don't actually build.
 build: off
+
+# Run snyk auth
+before_build:
+  - snyk auth $SNYK_TOKEN
+
+# Run coveralls
+after_build:
+  - npm run coveralls
+  
