@@ -6,6 +6,7 @@ Wrapper de los web service de <a href="https://culqi.api-docs.io" />Culqi</a>.
 
 [![Build Status](https://travis-ci.org/giwiro/culqi-node.svg?branch=master)](https://travis-ci.org/giwiro/culqi-node)
 [![Build status](https://ci.appveyor.com/api/projects/status/j1gb5qmm4uewyxh9?svg=true)](https://ci.appveyor.com/project/giwiro/culqi-node)
+[![Coverage Status](https://coveralls.io/repos/github/giwiro/culqi-node/badge.svg?branch=master)](https://coveralls.io/github/giwiro/culqi-node?branch=master)
 [![Dependency Status](https://www.versioneye.com/user/projects/585bed370f6ff600485b15e3/badge.svg)](https://www.versioneye.com/user/projects/585bed370f6ff600485b15e3)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![npm](https://img.shields.io/npm/v/npm.svg)]()

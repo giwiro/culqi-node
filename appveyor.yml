@@ -39,8 +39,3 @@ build: off
 # Run snyk auth
 before_build:
   - snyk auth $SNYK_TOKEN
-
-# Run coveralls
-after_build:
-  - npm run coveralls
-  
