@@ -1,6 +1,6 @@
 {
   "name": "culqi-node",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Culqi REST API wrapper",
   "main": "dist/culqi.js",
   "repository": {
