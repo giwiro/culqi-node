@@ -88,16 +88,49 @@ describe('Suscripciones', function() {
           console.log('err', err);
           done(err);
         });
+    });
+
+    it('should create suscripcion because incorrect params', function (done) {
+      culqi
+        .crearSuscripcion({
+          "token": 'fghgfhfg',
+          "codigo_pais": "qwetqwet",
+          "direccion": "Avenida Lima 123213",
+          "ciudad": "Lima",
+          "usuario": 234234,
+          "telefono": 1234567789,
+          "nombre": "Jon",
+          "apellido": "Doe",
+          "correo_electronico": "qwreqwer",
+          "plan_id": 'rutyuyt'
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    });
+
+    it('should fail at create suscripcion because no complete params', function (done) {
+      culqi
+        .crearSuscripcion({
+          "token": token,
+          "codigo_pais": "PE",
+          "direccion": "Avenida Lima 123213",
+          "ciudad": "Lima",
+          "usuario": "soporteculqi",
+          "telefono": 1234567789,
+          "nombre": "Jon",
+          "apellido": "Doe"
+        }).catch(function (err) {
+          err.body.objeto.should.equal('error');
+          done();
+        });
 
     });
-  })
+
+  });
 
   describe('#cancelarSuscripcion()', function () {
     it('should cancel suscripcion', function (done) {
       culqi
         .cancelarSuscripcion({
           "id": suscripcion,
-
           "codigo_pais": "PE",
           "direccion": "Avenida Lima 123213",
           "ciudad": "Lima",
@@ -109,6 +142,40 @@ describe('Suscripciones', function() {
           "plan": plan,
           "token": token
         }).should.eventually.have.property('statusCode', 200).notify(done);
+    });
+
+    it('should cancel suscripcion because incorrect params', function (done) {
+      culqi
+        .cancelarSuscripcion({
+          "id": 'ghjhgjghjgh',
+          "codigo_pais": "sadfasdf",
+          "direccion": "Avenida Lima 123213",
+          "ciudad": "Lima",
+          "telefono": "1234567789",
+          "nombre": "Jon",
+          "correo_electronico": "asdfasdf",
+          "apellido": "Doe",
+          "usuario": "asdfasdf",
+          "plan": 'gfhjfgjfghj',
+          "token": 'hgjhgj'
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    });
+
+    it('should fail at cancel suscripcion because no complete params', function (done) {
+      culqi
+        .cancelarSuscripcion({
+          "id": suscripcion,
+          "codigo_pais": "PE",
+          "direccion": "Avenida Lima 123213",
+          "ciudad": "Lima",
+          "telefono": "1234567789",
+          "nombre": "Jon",
+          "correo_electronico": "soporte@culqi.com",
+          "apellido": "Doe"
+        }).catch(function (err) {
+          err.body.objeto.should.equal('error');
+          done();
+        });
     });
   })
   

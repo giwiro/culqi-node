@@ -70,6 +70,46 @@ describe('Cargos', function() {
         });
     });
 
+    it('should fail at create cargo because incorrect params', function (done) {
+      culqi
+        .crearCargo({
+          "token": 'gfhfgh',
+          "moneda": "USSSS",
+          "monto": 19900,
+          "descripcion": "Venta de prueba",
+          "pedido": shortid.generate(),
+          "codigo_pais": "PE",
+          "ciudad": "Lima",
+          "usuario": "71701956",
+          "direccion": "Avenida Lima 1232",
+          "telefono": 12313123,
+          "nombres": "Will",
+          "apellidos": "Muro",
+          "correo_electronico": 23423423432
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    });
+
+    it('should fail at create cargo because no complete params', function (done) {
+      culqi
+        .crearCargo({
+          "token": token,
+          "moneda": "PEN",
+          "monto": 19900,
+          "descripcion": "Venta de prueba",
+          "pedido": shortid.generate(),
+          "codigo_pais": "PE",
+          "ciudad": "Lima",
+          "usuario": "71701956",
+          "direccion": "Avenida Lima 1232",
+          "telefono": 12313123,
+          "nombres": "Will",
+          "apellidos": "Muro",
+        }).catch(function (err) {
+          err.body.objeto.should.equal('error');
+          done();
+        });
+    });
+
     
   })
 
@@ -79,6 +119,18 @@ describe('Cargos', function() {
         .consultarCargo({
           'id': cargo_id
         }).should.eventually.have.property('statusCode', 200).notify(done);
+    })
+
+    it('should fail at get cargo because incorrect params', function (done) {
+      culqi
+        .consultarCargo({
+          'id': 'asdas'
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    })
+
+    it('should fail at get cargo because no complete params', function (done) {
+      culqi
+        .consultarCargo().should.eventually.have.property('statusCode', 400).notify(done);
     })
   })
 
@@ -90,6 +142,26 @@ describe('Cargos', function() {
           'numero_pedido': pedido,
           'monto': 100
         }).should.eventually.have.property('statusCode', 200).notify(done);
+    })
+
+    /*it('should fail at return cargo because incorrect params', function (done) {
+      culqi
+        .devolverCargo({
+          'id': 5,
+          'numero_pedido': 456,
+          'monto': 100
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    })*/
+
+    it('should fail at return cargo because no complete params', function (done) {
+      culqi
+        .devolverCargo({
+          'id': cargo_id,
+          'monto': 100
+        }).catch(function (err) {
+          err.body.objeto.should.equal('error');
+          done();
+        });
     })
   })
   

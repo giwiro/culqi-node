@@ -93,7 +93,7 @@ var Culqi = function () {
   }, {
     key: 'consultarCargo',
     value: function consultarCargo(params) {
-      var url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+      var url = this.baseUrl + paths.consultarCargo + '/' + (params || {}).id;
       var fields = ['id'];
 
       return createPromise(url, 'GET', this.headers, params, fields);

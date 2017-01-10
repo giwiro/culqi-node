@@ -27,6 +27,35 @@ describe('Tokens', function() {
           "guardar": true
         }).should.eventually.have.property('statusCode', 200).notify(done);
     });
+
+    it('should create token because incorrect params', function (done) {
+      culqi
+        .crearToken({
+          "correo_electronico": "dfgdfg",
+          "nombre": "William",
+          "apellido": "Muro",
+          "numero": 'hhghgj',
+          "cvv": 'ghjghjghj',
+          "m_exp": 'ghjghj',
+          "a_exp": 'ghjghj',
+          "guardar": 'ghjghj'
+        }).should.eventually.have.property('statusCode', 400).notify(done);
+    });
+
+    it('should fail at create token because no complete params', function (done) {
+      culqi
+        .crearToken({
+          "correo_electronico": "wmuro@me.com",
+          "nombre": "William",
+          "apellido": "Muro",
+          "numero": 4444333322221111,
+          "cvv": 123,
+          "m_exp": 9
+        }).catch(function (err) {
+          err.body.objeto.should.equal('error');
+          done();
+        });
+    });
   })
   
 });

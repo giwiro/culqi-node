@@ -99,7 +99,7 @@ class Culqi {
   }
 
   consultarCargo(params) {
-    const url = this.baseUrl + paths.consultarCargo + '/' + params.id;
+    const url = this.baseUrl + paths.consultarCargo + '/' + (params || {}).id;
     const fields = ['id'];
 
     return createPromise(url, 'GET', this.headers, params, fields);
