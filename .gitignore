@@ -45,4 +45,5 @@ locals.json
 # DStore
 .DS_Store
 
+dist/
 activate_keys.sh
