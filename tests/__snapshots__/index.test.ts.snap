@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Culqi should have token property 1`] = `
+Object {
+  "createToken": [Function],
+  "getToken": [Function],
+  "getTokens": [Function],
+  "updateToken": [Function],
+}
+`;
+
+exports[`Culqi should throw error if pciCompliant is true but no public key was provided 1`] = `[Error: Provide 'publicKey' property]`;
+
+exports[`Culqi should throw error if privateKey is not set 1`] = `[Error: Provide 'privateKey' property]`;
+
+exports[`Culqi should throw error if publicKey is provided but pciCompliant is not true 1`] = `[Error: Provide 'pciCompliant' options as true. It means you acknowledge that you are PCI-compliant in order to execute certain operations.]`;
