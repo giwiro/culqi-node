@@ -18,7 +18,7 @@ export type Customer = {
   metadata: {[key: string]: string};
 };
 
-type CreateCustomerRequest = {
+export type CreateCustomerRequest = {
   first_name: string;
   last_name: string;
   email: string;
@@ -28,11 +28,11 @@ type CreateCustomerRequest = {
   phone_number: string;
 };
 
-type GetCustomerRequest = {
+export type GetCustomerRequest = {
   id: string;
 };
 
-type GetCustomersRequest = {
+export type GetCustomersRequest = {
   first_name?: string;
   last_name?: string;
   email?: string;
@@ -45,7 +45,7 @@ type GetCustomersRequest = {
   after?: string;
 };
 
-type GetCustomersResponse = {
+export type GetCustomersResponse = {
   data: Customer[];
   paging: {
     previous: string;
@@ -58,16 +58,16 @@ type GetCustomersResponse = {
   };
 };
 
-type UpdateCustomerRequest = {
+export type UpdateCustomerRequest = {
   id: string;
   metadata?: {[key: string]: string};
 };
 
-type DeleteCustomerRequest = {
+export type DeleteCustomerRequest = {
   id: string;
 };
 
-type DeleteCustomerResponse = {
+export type DeleteCustomerResponse = {
   id: string;
   deleted: boolean;
   merchant_message: string;

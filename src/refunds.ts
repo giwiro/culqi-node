@@ -11,17 +11,17 @@ export type Refund = {
   metadata: {[key: string]: string};
 };
 
-type CreateRefundRequest = {
+export type CreateRefundRequest = {
   amount: number;
   charge_id: string;
   reason: string;
 };
 
-type GetRefundRequest = {
+export type GetRefundRequest = {
   id: string;
 };
 
-type GetRefundsRequest = {
+export type GetRefundsRequest = {
   creation_date?: string;
   creation_date_from?: string;
   creation_date_to?: string;
@@ -31,7 +31,7 @@ type GetRefundsRequest = {
   after?: string;
 };
 
-type GetRefundsResponse = {
+export type GetRefundsResponse = {
   data: Refund[];
   paging: {
     previous: string;
@@ -44,7 +44,7 @@ type GetRefundsResponse = {
   };
 };
 
-type UpdateRefundRequest = {
+export type UpdateRefundRequest = {
   id: string;
   metadata?: {[key: string]: string};
 };

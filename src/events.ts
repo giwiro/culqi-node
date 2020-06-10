@@ -7,11 +7,11 @@ export type Event = {
   data: {[key: string]: any};
 };
 
-type GetEventRequest = {
+export type GetEventRequest = {
   id: string;
 };
 
-type GetEventsRequest = {
+export type GetEventsRequest = {
   type?: string;
   creation_date?: string;
   creation_date_from?: string;
@@ -21,7 +21,7 @@ type GetEventsRequest = {
   after?: string;
 };
 
-type GetEventsResponse = {
+export type GetEventsResponse = {
   data: Event[];
   paging: {
     previous: string;

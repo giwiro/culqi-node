@@ -1,5 +1,6 @@
 import {get, post, patch, HttpRequestOptions} from './request';
 import vars from './vars';
+import {Card} from './cards';
 
 export type Charge = {
   object: string;
@@ -13,44 +14,12 @@ export type Charge = {
   currency: string;
   email: string;
   description: string;
-  source: {
-    object: string;
-    id: string;
+  source: Card;
+  outcome: {
     type: string;
-    email: string;
-    creation_date: number;
-    card_number: string;
-    last_four: string;
-    active: boolean;
-    iin: {
-      object: string;
-      bin: string;
-      card_brand: string;
-      card_type: string;
-      card_category: string;
-      issuer: {
-        name: string;
-        country: string;
-        country_code: string;
-        website: string;
-        phone_number: string;
-      };
-      installments_allowed: number[];
-    };
-    client: {
-      ip: string;
-      ip_country: string;
-      ip_country_code: string;
-      browser: string;
-      device_fingerprint: string;
-      device_type: string;
-    };
-    outcome: {
-      type: string;
-      code: string;
-      merchant_message: string;
-      user_message: string;
-    };
+    code: string;
+    merchant_message: string;
+    user_message: string;
   };
   fraud_score: number;
   antifraud_details: {
@@ -82,7 +51,7 @@ export type Charge = {
   duplicated: boolean;
 };
 
-type CreateChargeRequest = {
+export type CreateChargeRequest = {
   amount: string;
   currency_code: string;
   email: string;
@@ -101,11 +70,11 @@ type CreateChargeRequest = {
   };
 };
 
-type GetChargeRequest = {
+export type GetChargeRequest = {
   id: string;
 };
 
-type GetChargesRequest = {
+export type GetChargesRequest = {
   amount?: string;
   min_amount?: string;
   max_amount?: string;
@@ -146,7 +115,7 @@ type GetChargesRequest = {
   after?: string;
 };
 
-type GetChargesResponse = {
+export type GetChargesResponse = {
   data: Charge[];
   paging: {
     previous: string;
@@ -159,12 +128,12 @@ type GetChargesResponse = {
   };
 };
 
-type UpdateChargeRequest = {
+export type UpdateChargeRequest = {
   id: string;
   metadata?: {[key: string]: string};
 };
 
-type CaptureChargeRequest = {
+export type CaptureChargeRequest = {
   id: string;
 };
 

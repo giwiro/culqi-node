@@ -1,7 +1,7 @@
-import {get, post, patch, HttpRequestOptions} from './request';
+import {get, post, patch, delete_, HttpRequestOptions} from './request';
 import vars from './vars';
 
-export type Token = {
+export type Card = {
   object: string;
   id: string;
   type: string;
@@ -16,7 +16,7 @@ export type Token = {
     card_brand: string;
     card_type: string;
     card_category: string;
-    issuer: {
+    issuer?: {
       name: string;
       country: string;
       country_code: string;
@@ -36,22 +36,19 @@ export type Token = {
   metadata: {[key: string]: string};
 };
 
-export type CreateTokenRequest = {
-  card_number: string;
-  cvv: string;
-  expiration_month: string;
-  expiration_year: string;
-  email: string;
-  metadata?: {[key: string]: string};
+export type CreateCardRequest = {
+  customer_id: string;
+  token_id: string;
 };
 
-export type GetTokenRequest = {
+export type GetCardRequest = {
   id: string;
 };
 
-export type GetTokensRequest = {
+export type GetCardsRequest = {
   creation_date?: string;
   creation_date_to?: string;
+  creation_date_from?: string;
   card_brand?: string;
   card_type?: string;
   device_type?: string;
@@ -62,8 +59,8 @@ export type GetTokensRequest = {
   after?: string;
 };
 
-export type GetTokensResponse = {
-  data: Token[];
+export type GetCardsResponse = {
+  data: Card[];
   paging: {
     previous: string;
     next: string;
@@ -75,41 +72,50 @@ export type GetTokensResponse = {
   };
 };
 
-export type UpdateTokenRequest = {
+export type UpdateCardRequest = {
   id: string;
   metadata?: {[key: string]: string};
 };
 
-export const tokens = {
-  createToken: (
-    req: CreateTokenRequest,
+export type DeleteCardRequest = {
+  id: string;
+};
+
+export type DeleteCardResponse = {
+  id: string;
+  deleted: boolean;
+  merchant_message: string;
+};
+
+export const cards = {
+  createCard: (
+    req: CreateCardRequest,
+    extraHttpOptions?: Partial<HttpRequestOptions>
+  ) => post<Card>(vars.basePaths.cards, req, extraHttpOptions),
+  getCard: (
+    req: GetCardRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    post<Token>(vars.basePaths.tokens, req, {
-      ...extraHttpOptions,
-      useSecureEndpoint: true,
-    }),
-  getTokens: (
-    req?: GetTokensRequest,
+    get<Card>(`${vars.basePaths.cards}/${req.id}`, undefined, extraHttpOptions),
+  getCards: (
+    req?: GetCardsRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    get<GetTokensResponse>(
-      vars.basePaths.tokens,
+    get<GetCardsResponse>(
+      vars.basePaths.cards,
       req as {[key: string]: string},
       extraHttpOptions
     ),
-  getToken: (
-    req: GetTokenRequest,
+  updateCard: (
+    req: UpdateCardRequest,
+    extraHttpOptions?: Partial<HttpRequestOptions>
+  ) => patch<Card>(`${vars.basePaths.cards}/${req.id}`, req, extraHttpOptions),
+  deleteCard: (
+    req: DeleteCardRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    get<Token>(
-      `${vars.basePaths.tokens}/${req.id}`,
-      undefined,
+    delete_<DeleteCardResponse>(
+      `${vars.basePaths.cards}/${req.id}`,
       extraHttpOptions
     ),
-  updateToken: (
-    req: UpdateTokenRequest,
-    extraHttpOptions?: Partial<HttpRequestOptions>
-  ) =>
-    patch<Token>(`${vars.basePaths.tokens}/${req.id}`, req, extraHttpOptions),
 };

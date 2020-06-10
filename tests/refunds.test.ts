@@ -19,14 +19,15 @@ describe('refunds', () => {
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
 
-    const resp = await tokens.createToken({
+    const token = await tokens.createToken({
       card_number: '4111111111111111',
       cvv: '123',
       expiration_month: '09',
       expiration_year: '2025',
       email: 'richard@piedpiper.com',
     });
-    createdTokenId = resp.id;
+
+    createdTokenId = token.id;
 
     const charge = await charges.createCharge({
       amount: '10000',

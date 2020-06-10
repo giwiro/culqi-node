@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`cards createCard should change path 1`] = `"/v2/cards"`;
+
+exports[`cards getCards should change path 1`] = `"/v2/cards?limit=2"`;
