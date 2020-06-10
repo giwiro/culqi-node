@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`charges createCharge should change path 1`] = `"/v2/charges"`;
+
+exports[`charges createCharge should create charge 1`] = `"charge"`;
+
+exports[`charges getCharge should get the charge 1`] = `"charge"`;
+
+exports[`charges getCharges should change path 1`] = `"/v2/charges?limit=2"`;
+
+exports[`charges updateCharge should update charge 1`] = `"charge"`;

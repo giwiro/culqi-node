@@ -1,4 +1,4 @@
-import {tokens, Token} from '../src/tokens';
+import {tokens} from '../src/tokens';
 import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';

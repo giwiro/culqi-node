@@ -85,7 +85,7 @@ export const tokens = {
     req: CreateTokenRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    post<Token>(`${vars.basePaths.tokens}`, req, {
+    post<Token>(vars.basePaths.tokens, req, {
       ...extraHttpOptions,
       useSecureEndpoint: true,
     }),
@@ -94,7 +94,7 @@ export const tokens = {
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
     get<GetTokensResponse>(
-      `${vars.basePaths.tokens}`,
+      vars.basePaths.tokens,
       req as {[key: string]: string},
       extraHttpOptions
     ),
