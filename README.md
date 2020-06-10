@@ -9,3 +9,24 @@ Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![types](https://img.shields.io/npm/types/culqi-node)]()
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+
+### Install;
+```sh
+# Get latest version
+$ npm install culqi-node
+```
+
+### Quick start &nbsp;
+```javascript
+const Culqi = require('culqi-node');
+const culqi = new Culqi({
+    privateKey: 'sk_test_xxxxxxxxxxxxx',
+});
+
+(async () => {
+    const token = await culqi.tokens.getToken({
+        id: 'tkn_test_xxxxxxxxxxxxx',
+    });
+    console.log(token.id);
+})();
+```
