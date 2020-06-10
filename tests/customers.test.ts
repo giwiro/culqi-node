@@ -3,6 +3,11 @@ import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
 
+const uniqueEmail =
+  Math.random().toString(36).substring(2, 15) +
+  Math.random().toString(36).substring(2, 15) +
+  '@domain.com';
+
 describe('customers', () => {
   let publicKey: string;
   let privateKey: string;
@@ -24,7 +29,7 @@ describe('customers', () => {
         {
           first_name: 'Richard',
           last_name: 'Hendricks',
-          email: 'richard@piedpiper.com',
+          email: uniqueEmail,
           address: 'San Francisco Bay Area',
           address_city: 'Palo Alto',
           country_code: 'US',
@@ -42,7 +47,7 @@ describe('customers', () => {
       const resp = await customers.createCustomer({
         first_name: 'Richard',
         last_name: 'Hendricks',
-        email: 'richard@piedpiper.com',
+        email: uniqueEmail,
         address: 'San Francisco Bay Area',
         address_city: 'Palo Alto',
         country_code: 'US',
