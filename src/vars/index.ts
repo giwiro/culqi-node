@@ -15,6 +15,7 @@ export default {
     subscriptions: '/subscriptions',
     customers: '/customers',
     cards: '/cards',
+    orders: '/orders',
     events: '/events',
   },
   publicKey: '',
