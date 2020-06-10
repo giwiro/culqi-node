@@ -5,17 +5,26 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "pretest": "npm run build",
+    "prepublish": "npm run build",
     "build": "tsc --project ./tsconfig.json",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "jest",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "test:coverage": "jest --coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/giwiro/culqi-node.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "culqi",
+    "pasarela",
+    "pagos",
+    "payment",
+    "node",
+    "nodejs"
+  ],
+  "author": "Gi Wah Dávalos Loo <giwirodavalos@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/giwiro/culqi-node/issues"
@@ -23,8 +32,9 @@
   "homepage": "https://github.com/giwiro/culqi-node#readme",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^14.0.11",
     "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.11",
+    "coveralls": "^3.1.0",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
     "ts-jest": "^26.1.0",
