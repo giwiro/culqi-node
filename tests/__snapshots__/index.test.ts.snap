@@ -1,6 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Culqi should have token property 1`] = `
+exports[`Culqi should have charges property 1`] = `
+Object {
+  "captureCharge": [Function],
+  "createCharge": [Function],
+  "getCharge": [Function],
+  "getCharges": [Function],
+  "updateCharge": [Function],
+}
+`;
+
+exports[`Culqi should have refunds property 1`] = `
+Object {
+  "createRefund": [Function],
+  "getRefund": [Function],
+  "getRefunds": [Function],
+  "updateRefunds": [Function],
+}
+`;
+
+exports[`Culqi should have tokens property 1`] = `
 Object {
   "createToken": [Function],
   "getToken": [Function],

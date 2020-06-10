@@ -2,7 +2,7 @@ import {get, post, patch, HttpRequestOptions} from './request';
 import vars from './vars';
 
 export type Token = {
-  object: 'token';
+  object: string;
   id: string;
   type: string;
   email: string;
@@ -11,7 +11,7 @@ export type Token = {
   last_four: string;
   active: boolean;
   iin: {
-    object: 'iin';
+    object: string;
     bin: string;
     card_brand: string;
     card_type: string;

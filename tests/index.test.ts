@@ -54,12 +54,30 @@ describe('Culqi', () => {
     expect(vars.publicKey).toBe('bcd');
   });
 
-  it('should have token property', () => {
+  it('should have tokens property', () => {
     const culqi = new Culqi({
       privateKey: 'abc',
       publicKey: 'bcd',
       pciCompliant: true,
     });
     expect(culqi.tokens).toMatchSnapshot();
+  });
+
+  it('should have charges property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.charges).toMatchSnapshot();
+  });
+
+  it('should have refunds property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.refunds).toMatchSnapshot();
   });
 });

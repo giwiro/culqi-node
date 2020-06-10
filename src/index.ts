@@ -1,6 +1,8 @@
 import vars from './vars';
 import {tokens} from './tokens';
 import {charges} from './charges';
+import {refunds} from './refunds';
+import {customers} from './customers';
 
 type CulqiOptions = {
   privateKey?: string;
@@ -11,6 +13,8 @@ type CulqiOptions = {
 export = class Culqi {
   public tokens = tokens;
   public charges = charges;
+  public refunds = refunds;
+  public customers = customers;
 
   constructor(options: CulqiOptions = {}) {
     if (!options.privateKey) throw new Error("Provide 'privateKey' property");

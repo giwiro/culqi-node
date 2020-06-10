@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`refunds createRefund should change path 1`] = `"/v2/refunds"`;
+
+exports[`refunds createRefund should create refund 1`] = `"refund"`;
+
+exports[`refunds getRefund should get the refund 1`] = `"refund"`;
+
+exports[`refunds getRefunds should change path 1`] = `"/v2/refunds?limit=2"`;
+
+exports[`refunds updateRefunds should update charge 1`] = `"refund"`;

@@ -10,6 +10,7 @@ export default {
   basePaths: {
     tokens: '/tokens',
     charges: '/charges',
+    refunds: '/refunds',
     plans: '/plans',
     subscriptions: '/subscriptions',
     customers: '/customers',
