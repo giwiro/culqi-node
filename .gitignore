@@ -1,3 +1,6 @@
+# idea
+.idea
+
 # Logs
 logs
 *.log
@@ -41,3 +44,6 @@ locals.json
 
 # DStore
 .DS_Store
+
+dist/
+activate_keys.sh

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`tokens createToken should change path 1`] = `"/v2/tokens"`;
+
+exports[`tokens createToken should create token 1`] = `"token"`;
+
+exports[`tokens createToken should create token 2`] = `"card"`;
+
+exports[`tokens getToken should get token 1`] = `"token"`;
+
+exports[`tokens getToken should get token 2`] = `"card"`;
+
+exports[`tokens getTokens should change path 1`] = `"/v2/tokens"`;
+
+exports[`tokens updateToken should update token 1`] = `"token"`;
+
+exports[`tokens updateToken should update token 2`] = `"card"`;

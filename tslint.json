@@ -1,0 +1,19 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:latest"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "dist/**/*"
+        ]
+    },
+    "jsRules": {},
+    "rules": {
+        "prettier": [true, "./.prettierrc"],
+        "no-implicit-dependencies": [true, "dev"],
+        "quotemark": [true, "single", "avoid-escape"],
+        "no-console": false
+    },
+    "rulesDirectory": ["tslint-plugin-prettier"]
+}

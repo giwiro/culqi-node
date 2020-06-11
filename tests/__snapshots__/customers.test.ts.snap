@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`customers createCustomer should change path 1`] = `"/v2/customers"`;
+
+exports[`customers createCustomer should create customer 1`] = `"customer"`;
+
+exports[`customers getCustomer should get customer 1`] = `"customer"`;
+
+exports[`customers getCustomers should change path 1`] = `"/v2/customers?limit=2"`;
+
+exports[`customers updateCustomer should update customer 1`] = `"customer"`;
