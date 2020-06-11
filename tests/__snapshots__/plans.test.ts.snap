@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plans createPlan should change path 1`] = `"/v2/plans"`;
+
+exports[`plans createPlan should create plan 1`] = `"plan"`;
+
+exports[`plans getPlan should get plan 1`] = `"plan"`;
+
+exports[`plans getPlans should change path 1`] = `"/v2/plans?limit=2"`;
+
+exports[`plans updatePlan should update plan 1`] = `"plan"`;

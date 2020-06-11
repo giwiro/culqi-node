@@ -10,7 +10,7 @@ Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written 
 [![types](https://img.shields.io/npm/types/culqi-node)]()
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-### Install;
+### Install
 ```sh
 # Get latest version
 $ npm install culqi-node

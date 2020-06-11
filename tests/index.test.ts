@@ -80,4 +80,58 @@ describe('Culqi', () => {
     });
     expect(culqi.refunds).toMatchSnapshot();
   });
+
+  it('should have customers property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.customers).toMatchSnapshot();
+  });
+
+  it('should have cards property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.cards).toMatchSnapshot();
+  });
+
+  it('should have plans property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.plans).toMatchSnapshot();
+  });
+
+  it('should have subscriptions property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.subscriptions).toMatchSnapshot();
+  });
+
+  it('should have orders property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.orders).toMatchSnapshot();
+  });
+
+  it('should have events property', () => {
+    const culqi = new Culqi({
+      privateKey: 'abc',
+      publicKey: 'bcd',
+      pciCompliant: true,
+    });
+    expect(culqi.events).toMatchSnapshot();
+  });
 });

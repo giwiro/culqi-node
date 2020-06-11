@@ -3,6 +3,11 @@ import {tokens} from './tokens';
 import {charges} from './charges';
 import {refunds} from './refunds';
 import {customers} from './customers';
+import {cards} from './cards';
+import {plans} from './plans';
+import {subscriptions} from './subscriptions';
+import {orders} from './orders';
+import {events} from './events';
 
 type CulqiOptions = {
   privateKey?: string;
@@ -15,6 +20,11 @@ export = class Culqi {
   public charges = charges;
   public refunds = refunds;
   public customers = customers;
+  public cards = cards;
+  public plans = plans;
+  public subscriptions = subscriptions;
+  public orders = orders;
+  public events = events;
 
   constructor(options: CulqiOptions = {}) {
     if (!options.privateKey) throw new Error("Provide 'privateKey' property");
