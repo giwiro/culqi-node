@@ -16,17 +16,193 @@ Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written 
 $ npm install culqi-node
 ```
 
-### Quick start &nbsp;
+### Quick start
 ```javascript
 const Culqi = require('culqi-node');
 const culqi = new Culqi({
-    privateKey: 'sk_test_xxxxxxxxxxxxx',
+    privateKey: 'sk_test_xxxxxxxxxxxxxxxx',
 });
 
 (async () => {
     const token = await culqi.tokens.getToken({
-        id: 'tkn_test_xxxxxxxxxxxxx',
+        id: 'tkn_test_xxxxxxxxxxxxxxxx',
     });
     console.log(token.id);
 })();
 ```
+
+### Common operations
+In a regular flow, some other culqi frontend library such as the [Android](https://github.com/culqi/culqi-android) or 
+[CulqiJS](https://www.culqi.com/docs/#/pagos/js), would generate the token in a "safe" way. That token is gonna be
+the input for generating charges.
+
+#### Create charge
+
+```javascript
+const Culqi = require('culqi-node');
+const culqi = new Culqi({
+    privateKey: 'sk_test_xxxxxxxxxxxxxxxx',
+});
+
+(async () => {
+    const charge = await culqi.charges.createCharge({
+        amount: '10000',
+        currency_code: 'PEN',
+        email: 'richard@piedpiper.com',
+        id: 'tkn_test_xxxxxxxxxxxxxxxx',
+    });
+
+    console.log(charge.id);
+})();
+```
+
+#### Create charge and the capture it
+
+```javascript
+const Culqi = require('culqi-node');
+const culqi = new Culqi({
+    privateKey: 'sk_test_xxxxxxxxxxxxxxxx',
+});
+
+(async () => {
+    const charge = await culqi.charges.createCharge({
+        amount: '10000',
+        currency_code: 'PEN',
+        email: 'richard@piedpiper.com',
+        id: 'tkn_test_xxxxxxxxxxxxxxxx',
+    });
+    
+    // Do some other operations, such as custom self-made fraud prevention
+
+    const capturedCharge = await culqi.charges.captureCharge({
+        // chr_test_xxxxxxxxxxxxxxxx
+        id: charge.id,
+    });
+    
+    // This should be true
+    console.log(capturedCharge.capture);
+})();
+```
+
+#### Refund charge
+
+```javascript
+const Culqi = require('culqi-node');
+const culqi = new Culqi({
+    privateKey: 'sk_test_xxxxxxxxxxxxxxxx',
+});
+
+(async () => {
+    const refund = await culqi.refunds.createRefund({
+        // chr_test_xxxxxxxxxxxxxxxx
+        amount: 2000,
+        charge_id: 'chr_test_xxxxxxxxxxxxxxxx',
+        reason: 'Fraud',
+    });
+    
+    console.log(refund.id);
+})();
+```
+
+### Uncommon operations
+
+#### Create token
+Normally you wouldn't create the token by yourself. To do so, or if any credit card data 
+goes through your server, you will need to
+be [PCI compliant](https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-D_Merchant-rev1_1.pdf?agreement=true&time=1508189914058).
+More information [here](https://culqi.zendesk.com/hc/es/articles/360024196973--Por-qu%C3%A9-me-aparece-el-siguiente-mensaje-Tu-c%C3%B3digo-de-comercio-no-est%C3%A1-autorizado-para-hacer-este-tipo-de-operaciones-PCI-).
+
+In order to create a token, you will need to create a `Culqi` instance a bit differently.
+You will need to provide the `pciCompliant` property as `true` and `publicKey`.
+
+```javascript
+const Culqi = require('culqi-node');
+const culqi = new Culqi({
+    privateKey: 'sk_test_xxxxxxxxxxxxxxxx',
+    pciCompliant: true,
+    publicKey: 'pk_test_xxxxxxxxxxxxxxxx',
+});
+
+(async () => {
+    const token = await culqi.tokens.createToken({
+        card_number: '4111111111111111',
+        cvv: '123',
+        expiration_month: '09',
+        expiration_year: '2020',
+        email: 'richard@piedpiper.com',
+    });
+    
+    console.log(token.id);
+})();
+```
+
+
+### Available operations
+
+#### [Token](https://www.culqi.com/api/#/tokens)
+
+- Create token
+- Get token
+- Get tokens
+- Update token
+
+#### [Charges](https://www.culqi.com/api/#/cargos)
+
+- Create charge
+- Get charge
+- Get charges
+- Update charge
+- Capture charge
+
+#### [Refunds](https://www.culqi.com/api/#/devoluciones)
+
+- Create refund
+- Get refund
+- Get refunds
+- Update refund
+
+#### [Customers](https://www.culqi.com/api/#/clientes)
+
+- Create customer
+- Get customer
+- Get customers
+- Update customer
+- Delete customer
+
+#### [Cards](https://www.culqi.com/api/#/tarjetas)
+
+- Create card
+- Get card
+- Get cards
+- Update card
+- Delete card
+
+#### [Plans](https://www.culqi.com/api/#/planes)
+
+- Create plan
+- Get plan
+- Get plans
+- Update plan
+- Delete plan
+
+#### [Subscriptions](https://www.culqi.com/api/#/suscripciones)
+
+- Create subscription
+- Get subscription
+- Get subscriptions
+- Update subscription
+- Delete subscription
+
+#### [Orders](https://www.culqi.com/api/#/ordenes)
+
+- Create order
+- Confirm order
+- Get order
+- Get orders
+- Update order
+- Delete order
+
+#### [Events](https://www.culqi.com/api/#/eventos)
+
+- Get event
+- Get events

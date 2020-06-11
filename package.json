@@ -1,11 +1,11 @@
 {
   "name": "culqi-node",
   "version": "1.0.0",
-  "description": "",
+  "description": "Typescript wrapper for Culqi web services developed for Node.js with 0 runtime dependencies",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && node scripts/prepublish.js",
     "build": "tsc --project ./tsconfig.json",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "test": "jest",
