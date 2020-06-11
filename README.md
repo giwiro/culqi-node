@@ -94,7 +94,6 @@ const culqi = new Culqi({
 
 (async () => {
     const refund = await culqi.refunds.createRefund({
-        // chr_test_xxxxxxxxxxxxxxxx
         amount: 2000,
         charge_id: 'chr_test_xxxxxxxxxxxxxxxx',
         reason: 'Fraud',
