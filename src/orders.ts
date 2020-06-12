@@ -117,7 +117,7 @@ export const orders = {
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
     patch<Order>(`${vars.basePaths.orders}/${req.id}`, req, extraHttpOptions),
-  deletePlan: (
+  deleteOrder: (
     req: DeleteOrderRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>

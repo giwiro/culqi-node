@@ -66,28 +66,30 @@ describe('orders', () => {
     });*/
   });
 
-  /*describe('confirmOrder', () => {
+  describe('confirmOrder', () => {
     it('should change path', () => {
       const mockedHttps = httpMockFactory();
       orders.confirmOrder(
         {
-          id: createdOrderId,
+          id: 'order_id',
         },
         {
           _httpProvider: mockedHttps,
         }
       );
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
-      expect(c.path).toMatchSnapshot();
+      expect(c.path).toBe(
+        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
+      );
     });
 
-    it('should confirm order', async () => {
+    /*it('should confirm order', async () => {
       const order = await orders.confirmOrder({
         id: createdOrderId,
       });
       console.log(order);
       expect(order.state).toBe('confirmado');
-    });
+    });*/
   });
 
   describe('getOrder', () => {
@@ -95,7 +97,7 @@ describe('orders', () => {
       const mockedHttps = httpMockFactory();
       orders.getOrder(
         {
-          id: createdOrderId,
+          id: 'order_id',
         },
         {
           _httpProvider: mockedHttps,
@@ -103,22 +105,22 @@ describe('orders', () => {
       );
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
       expect(c.path).toMatch(
-        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/${createdOrderId}`
+        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );
     });
 
-    it('should get order', async () => {
+    /*it('should get order', async () => {
       const resp = await orders.getOrder({
         id: createdOrderId,
       });
       expect(resp.object).toMatchSnapshot();
-    });
+    });*/
   });
 
-  describe('getCustomers', () => {
+  describe('getOrders', () => {
     it('should change path', () => {
       const mockedHttps = httpMockFactory();
-      customers.getCustomers(
+      orders.getOrders(
         {
           limit: '2',
         },
@@ -130,20 +132,20 @@ describe('orders', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    it('should get customers', async () => {
-      const resp = await customers.getCustomers({
+    /*it('should get order', async () => {
+      const resp = await orders.getOrders({
         limit: '2',
       });
       expect(resp.data.length).toBeGreaterThan(0);
-    });
+    });*/
   });
 
-  describe('updateCustomer', () => {
+  describe('updateOrder', () => {
     it('should change path', () => {
       const mockedHttps = httpMockFactory();
-      customers.updateCustomer(
+      orders.updateOrder(
         {
-          id: createdCustomerId,
+          id: 'order_id',
           metadata: {
             foo: 'bar',
           },
@@ -154,13 +156,13 @@ describe('orders', () => {
       );
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
       expect(c.path).toMatch(
-        `${vars.baseEndpoint.basePath}${vars.basePaths.customers}/${createdCustomerId}`
+        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );
     });
 
-    it('should update customer', async () => {
-      const resp = await customers.updateCustomer({
-        id: createdCustomerId,
+    /*it('should update order', async () => {
+      const resp = await orders.updateOrder({
+        id: createdOrderId,
         metadata: {
           foo: 'bar',
         },
@@ -169,15 +171,15 @@ describe('orders', () => {
       expect(resp.metadata).toEqual({
         foo: 'bar',
       });
-    });
+    });*/
   });
 
-  describe('deleteCustomer', () => {
+  describe('deleteCOrder', () => {
     it('should change path', () => {
       const mockedHttps = httpMockFactory();
-      customers.deleteCustomer(
+      orders.deleteOrder(
         {
-          id: createdCustomerId,
+          id: 'order_id',
         },
         {
           _httpProvider: mockedHttps,
@@ -185,15 +187,15 @@ describe('orders', () => {
       );
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
       expect(c.path).toMatch(
-        `${vars.baseEndpoint.basePath}${vars.basePaths.customers}/${createdCustomerId}`
+        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );
     });
 
-    it('should delete customer', async () => {
-      const resp = await customers.deleteCustomer({
-        id: createdCustomerId,
+    /*it('should delete order', async () => {
+      const resp = await orders.deleteOrder({
+        id: createdOrderId,
       });
       expect(resp.deleted).toBeTruthy();
-    });
-  });*/
+    });*/
+  });
 });

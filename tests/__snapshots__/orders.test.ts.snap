@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`orders createOrder should change path 1`] = `"/v2/orders"`;
+
+exports[`orders getOrders should change path 1`] = `"/v2/orders?limit=2"`;

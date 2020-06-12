@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`subscriptions createSubscription should change path 1`] = `"/v2/subscriptions"`;
+
+exports[`subscriptions getSubscriptions should change path 1`] = `"/v2/subscriptions?limit=2"`;

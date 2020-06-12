@@ -41,7 +41,7 @@ exports[`Culqi should have orders property 1`] = `
 Object {
   "confirmOrder": [Function],
   "createOrder": [Function],
-  "deletePlan": [Function],
+  "deleteOrder": [Function],
   "getOrder": [Function],
   "getOrders": [Function],
   "updateOrder": [Function],

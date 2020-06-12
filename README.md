@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/giwiro/culqi-node/feature/v2/assets/culqi.jpg" width="350" />
+<img src="https://raw.githubusercontent.com/giwiro/culqi-node/master/assets/culqi.jpg" width="350" />
 
 # culqi-node
 Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written in typescript using pure Node.js api with 0 runtime dependencies.
