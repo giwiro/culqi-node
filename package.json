@@ -1,6 +1,6 @@
 {
   "name": "culqi-node",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Typescript wrapper for Culqi web services developed for Node.js with 0 runtime dependencies",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
