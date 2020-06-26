@@ -46,7 +46,7 @@ describe('orders', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it.only('should create order', async () => {
+    /*it('should create order', async () => {
       const order = await orders.createOrder({
         amount: 1000,
         currency_code: 'PEN',

@@ -2,4 +2,10 @@
 
 exports[`cards createCard should change path 1`] = `"/v2/cards"`;
 
+exports[`cards createCard should create card 1`] = `"card"`;
+
+exports[`cards getCard should get card 1`] = `"card"`;
+
 exports[`cards getCards should change path 1`] = `"/v2/cards?limit=2"`;
+
+exports[`cards updateCard should update card 1`] = `"card"`;
