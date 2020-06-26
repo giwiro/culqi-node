@@ -14,9 +14,9 @@ describe('cards', () => {
   let publicKey: string;
   let privateKey: string;
 
-  /*let createdTokenId: string;
+  let createdTokenId: string;
   let createdCustomerId: string;
-  let createdCardId: string;*/
+  let createdCardId: string;
 
   beforeAll(async () => {
     privateKey = process.env.CULQI_PRIVATE_KEY || '';
@@ -24,7 +24,7 @@ describe('cards', () => {
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
 
-    /*const [token, customer] = [
+    const [token, customer] = [
       await tokens.createToken({
         card_number: '4111111111111111',
         cvv: '123',
@@ -44,14 +44,14 @@ describe('cards', () => {
     ];
 
     createdTokenId = token.id;
-    createdCustomerId = customer.id;*/
+    createdCustomerId = customer.id;
   });
 
-  /*afterAll(async () => {
+  afterAll(async () => {
     await customers.deleteCustomer({
       id: createdCustomerId,
     });
-  });*/
+  });
 
   beforeEach(() => {
     privateKey = process.env.CULQI_PRIVATE_KEY || '';
@@ -77,14 +77,14 @@ describe('cards', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it.only('should create card', async () => {
+    it('should create card', async () => {
       const resp = await cards.createCard({
         customer_id: createdCustomerId,
         token_id: createdTokenId,
       });
       createdCardId = resp.id;
       expect(resp.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('getCard', () => {
@@ -104,12 +104,12 @@ describe('cards', () => {
       );
     });
 
-    /*it('should get card', async () => {
+    it('should get card', async () => {
       const resp = await cards.getCard({
         id: createdCardId,
       });
       expect(resp.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('getCards', () => {
@@ -127,12 +127,12 @@ describe('cards', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it('should get cards', async () => {
+    it('should get cards', async () => {
       const resp = await cards.getCards({
         limit: '2',
       });
       expect(resp.data.length).toBeGreaterThan(0);
-    });*/
+    });
   });
 
   describe('updateCard', () => {
@@ -155,7 +155,7 @@ describe('cards', () => {
       );
     });
 
-    /*it('should update card', async () => {
+    it('should update card', async () => {
       const resp = await cards.updateCard({
         id: createdCardId,
         metadata: {
@@ -166,7 +166,7 @@ describe('cards', () => {
       expect(resp.metadata).toEqual({
         foo: 'bar',
       });
-    });*/
+    });
   });
 
   describe('deleteCard', () => {
@@ -186,11 +186,11 @@ describe('cards', () => {
       );
     });
 
-    /*it('should delete card', async () => {
+    it('should delete card', async () => {
       const resp = await cards.deleteCard({
         id: createdCardId,
       });
       expect(resp.deleted).toBeTruthy();
-    });*/
+    });
   });
 });

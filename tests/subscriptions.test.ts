@@ -1,8 +1,8 @@
 import {subscriptions} from '../src/subscriptions';
-/*import {tokens} from '../src/tokens';
+import {tokens} from '../src/tokens';
 import {cards} from '../src/cards';
 import {plans} from '../src/plans';
-import {customers} from '../src/customers';*/
+import {customers} from '../src/customers';
 import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
@@ -16,11 +16,11 @@ describe('subscriptions', () => {
   let publicKey: string;
   let privateKey: string;
 
-  /*let createdTokenId: string;
+  let createdTokenId: string;
   let createdCustomerId: string;
   let createdCardId: string;
   let createdPlanId: string;
-  let createdSubscriptionId: string;*/
+  let createdSubscriptionId: string;
 
   beforeAll(async () => {
     privateKey = process.env.CULQI_PRIVATE_KEY || '';
@@ -28,7 +28,7 @@ describe('subscriptions', () => {
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
 
-    /*const [token, customer] = [
+    const [token, customer] = [
       await tokens.createToken({
         card_number: '4111111111111111',
         cvv: '123',
@@ -66,10 +66,10 @@ describe('subscriptions', () => {
     ];
 
     createdCardId = card.id;
-    createdPlanId = plan.id;*/
+    createdPlanId = plan.id;
   });
 
-  /*afterAll(async () => {
+  afterAll(async () => {
     await cards.deleteCard({
       id: createdCardId,
     });
@@ -81,7 +81,7 @@ describe('subscriptions', () => {
         id: createdPlanId,
       }),
     ];
-  });*/
+  });
 
   beforeEach(() => {
     privateKey = process.env.CULQI_PRIVATE_KEY || '';
@@ -107,14 +107,14 @@ describe('subscriptions', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it.only('should create subscription', async () => {
+    it('should create subscription', async () => {
       const resp = await subscriptions.createSubscription({
         card_id: createdCardId,
         plan_id: createdPlanId,
       });
       createdSubscriptionId = resp.id;
       expect(resp.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('getSubscription', () => {
@@ -134,12 +134,12 @@ describe('subscriptions', () => {
       );
     });
 
-    /*it('should get subscription', async () => {
+    it('should get subscription', async () => {
       const resp = await subscriptions.getSubscription({
         id: createdSubscriptionId,
       });
       expect(resp.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('getSubscriptions', () => {
@@ -157,12 +157,12 @@ describe('subscriptions', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it('should get subscriptions', async () => {
+    it('should get subscriptions', async () => {
       const resp = await subscriptions.getSubscriptions({
         limit: '2',
       });
       expect(resp.data.length).toBeGreaterThan(0);
-    });*/
+    });
   });
 
   describe('updateSubscription', () => {
@@ -185,7 +185,7 @@ describe('subscriptions', () => {
       );
     });
 
-    /*it('should update subscription', async () => {
+    it('should update subscription', async () => {
       const resp = await subscriptions.updateSubscription({
         id: createdSubscriptionId,
         metadata: {
@@ -196,7 +196,7 @@ describe('subscriptions', () => {
       expect(resp.metadata).toEqual({
         foo: 'bar',
       });
-    });*/
+    });
   });
 
   describe('deleteSubscription', () => {
@@ -216,11 +216,11 @@ describe('subscriptions', () => {
       );
     });
 
-    /*it('should delete subscription', async () => {
+    it('should delete subscription', async () => {
       const resp = await subscriptions.deleteSubscription({
         id: createdSubscriptionId,
       });
       expect(resp.deleted).toBeTruthy();
-    });*/
+    });
   });
 });

@@ -27,11 +27,10 @@ describe('events', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it.only('should get events', async () => {
+    it('should get events', async () => {
       const resp = await events.getEvents();
-      console.log('resp', resp);
-      // expect(resp.data.length).toBeGreaterThan(0);
-    });*/
+      expect(resp.data.length).toBeGreaterThanOrEqual(0);
+    });
   });
 
   describe('getEvent', () => {
