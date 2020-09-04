@@ -3,9 +3,11 @@ import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
 
-const expirationDate = new Date();
+const d = new Date();
 // add a day
-expirationDate.setDate(expirationDate.getDate() + 3);
+d.setDate(d.getDate() + 3);
+
+const expirationDate = d.getTime() / 100;
 
 const uid = (new Date().getTime() + Math.round(Math.random() * 1e12)).toString(
   36
@@ -15,7 +17,7 @@ describe('orders', () => {
   let publicKey: string;
   let privateKey: string;
 
-  // let createdOrderId: string;
+  let createdOrderId: string;
 
   beforeEach(() => {
     privateKey = process.env.CULQI_PRIVATE_KEY || '';
@@ -40,7 +42,7 @@ describe('orders', () => {
             email: 'richard@piedpiper.com',
             phone_number: '945145288',
           },
-          expiration_date: expirationDate.getTime(),
+          expiration_date: expirationDate,
         },
         {
           _httpProvider: mockedHttps,
@@ -50,7 +52,7 @@ describe('orders', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it('should create order', async () => {
+    it('should create order', async () => {
       const req = {
         amount: 1000,
         currency_code: 'PEN',
@@ -62,14 +64,12 @@ describe('orders', () => {
           email: 'richard@piedpiper.com',
           phone_number: '945145288',
         },
-        expiration_date: expirationDate.getTime(),
+        expiration_date: expirationDate,
       };
-      // console.log(req);
       const order = await orders.createOrder(req);
-      // console.log(order);
       createdOrderId = order.id;
       expect(order.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('confirmOrder', () => {
@@ -85,7 +85,7 @@ describe('orders', () => {
       );
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
       expect(c.path).toBe(
-        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
+        `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id/confirm`
       );
     });
 
@@ -93,7 +93,6 @@ describe('orders', () => {
       const order = await orders.confirmOrder({
         id: createdOrderId,
       });
-      console.log(order);
       expect(order.state).toBe('confirmado');
     });*/
   });
@@ -115,12 +114,12 @@ describe('orders', () => {
       );
     });
 
-    /*it('should get order', async () => {
+    it('should get order', async () => {
       const resp = await orders.getOrder({
         id: createdOrderId,
       });
       expect(resp.object).toMatchSnapshot();
-    });*/
+    });
   });
 
   describe('getOrders', () => {
@@ -138,12 +137,12 @@ describe('orders', () => {
       expect(c.path).toMatchSnapshot();
     });
 
-    /*it('should get order', async () => {
+    it('should get order', async () => {
       const resp = await orders.getOrders({
         limit: '2',
       });
       expect(resp.data.length).toBeGreaterThan(0);
-    });*/
+    });
   });
 
   describe('updateOrder', () => {
@@ -166,7 +165,7 @@ describe('orders', () => {
       );
     });
 
-    /*it('should update order', async () => {
+    it('should update order', async () => {
       const resp = await orders.updateOrder({
         id: createdOrderId,
         metadata: {
@@ -177,7 +176,7 @@ describe('orders', () => {
       expect(resp.metadata).toEqual({
         foo: 'bar',
       });
-    });*/
+    });
   });
 
   describe('deleteCOrder', () => {
@@ -197,11 +196,12 @@ describe('orders', () => {
       );
     });
 
-    /*it('should delete order', async () => {
-      const resp = await orders.deleteOrder({
-        id: createdOrderId,
-      });
-      expect(resp.deleted).toBeTruthy();
-    });*/
+    it('should delete order', async () => {
+      await expect(
+        orders.deleteOrder({
+          id: createdOrderId,
+        })
+      ).resolves.toBe(undefined);
+    });
   });
 });

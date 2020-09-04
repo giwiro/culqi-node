@@ -93,7 +93,12 @@ export const orders = {
   confirmOrder: (
     req: ConfirmOrderRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
-  ) => post<Order>(`${vars.basePaths.orders}/${req.id}`, req, extraHttpOptions),
+  ) =>
+    post<Order>(
+      `${vars.basePaths.orders}/${req.id}/confirm`,
+      req,
+      extraHttpOptions
+    ),
   getOrder: (
     req: GetOrderRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
