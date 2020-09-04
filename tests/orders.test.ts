@@ -7,6 +7,10 @@ const expirationDate = new Date();
 // add a day
 expirationDate.setDate(expirationDate.getDate() + 3);
 
+const uid = (new Date().getTime() + Math.round(Math.random() * 1e12)).toString(
+  36
+);
+
 describe('orders', () => {
   let publicKey: string;
   let privateKey: string;
@@ -29,12 +33,12 @@ describe('orders', () => {
           amount: 1000,
           currency_code: 'PEN',
           description: 'Venta de prueba',
-          order_number: 'pedido-9999',
+          order_number: `order-${uid}`,
           client_details: {
             first_name: 'Richard',
             last_name: 'Hendricks',
             email: 'richard@piedpiper.com',
-            phone_number: '+51945145288',
+            phone_number: '945145288',
           },
           expiration_date: expirationDate.getTime(),
         },
@@ -47,20 +51,22 @@ describe('orders', () => {
     });
 
     /*it('should create order', async () => {
-      const order = await orders.createOrder({
+      const req = {
         amount: 1000,
         currency_code: 'PEN',
         description: 'Venta de prueba',
-        order_number: 'pedido-9999',
+        order_number: `order-${uid}`,
         client_details: {
           first_name: 'Richard',
           last_name: 'Hendricks',
           email: 'richard@piedpiper.com',
-          phone_number: '+51945145288',
+          phone_number: '945145288',
         },
         expiration_date: expirationDate.getTime(),
-      });
-      console.log(order);
+      };
+      // console.log(req);
+      const order = await orders.createOrder(req);
+      // console.log(order);
       createdOrderId = order.id;
       expect(order.object).toMatchSnapshot();
     });*/
