@@ -2,4 +2,10 @@
 
 exports[`orders createOrder should change path 1`] = `"/v2/orders"`;
 
+exports[`orders createOrder should create order 1`] = `"order"`;
+
+exports[`orders getOrder should get order 1`] = `"order"`;
+
 exports[`orders getOrders should change path 1`] = `"/v2/orders?limit=2"`;
+
+exports[`orders updateOrder should update order 1`] = `"order"`;
