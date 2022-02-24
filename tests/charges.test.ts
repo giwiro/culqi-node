@@ -4,6 +4,8 @@ import {tokens} from '../src/tokens';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
 
+const email = `richard-${Date.now()}@piedpiper.com`;
+
 describe('charges', () => {
   let publicKey: string;
   let privateKey: string;
@@ -21,7 +23,7 @@ describe('charges', () => {
       cvv: '123',
       expiration_month: '09',
       expiration_year: '2025',
-      email: 'richard@piedpiper.com',
+      email,
     });
     createdTokenId = resp.id;
   });
@@ -41,7 +43,7 @@ describe('charges', () => {
         {
           amount: '10000',
           currency_code: 'PEN',
-          email: 'richard@piedpiper.com',
+          email,
           source_id: createdTokenId,
         },
         {
@@ -56,7 +58,7 @@ describe('charges', () => {
       const resp = await charges.createCharge({
         amount: '10000',
         currency_code: 'PEN',
-        email: 'richard@piedpiper.com',
+        email,
         source_id: createdTokenId,
         capture: false,
       });

@@ -3,6 +3,8 @@ import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
 
+const email = `richard-${Date.now()}@piedpiper.com`;
+
 describe('tokens', () => {
   let publicKey: string;
   let privateKey: string;
@@ -26,7 +28,7 @@ describe('tokens', () => {
           cvv: '123',
           expiration_month: '09',
           expiration_year: '2025',
-          email: 'richard@piedpiper.com',
+          email,
         },
         {
           _httpProvider: mockedHttps,
@@ -42,7 +44,7 @@ describe('tokens', () => {
         cvv: '123',
         expiration_month: '09',
         expiration_year: '2025',
-        email: 'richard@piedpiper.com',
+        email,
       });
       createdTokenId = resp.id;
       expect(resp.object).toMatchSnapshot();

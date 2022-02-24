@@ -5,6 +5,8 @@ import {refunds} from '../src/refunds';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
 
+const email = `richard-${Date.now()}@piedpiper.com`;
+
 describe('refunds', () => {
   let publicKey: string;
   let privateKey: string;
@@ -24,7 +26,7 @@ describe('refunds', () => {
       cvv: '123',
       expiration_month: '09',
       expiration_year: '2025',
-      email: 'richard@piedpiper.com',
+      email,
     });
 
     createdTokenId = token.id;
@@ -32,7 +34,7 @@ describe('refunds', () => {
     const charge = await charges.createCharge({
       amount: '10000',
       currency_code: 'PEN',
-      email: 'richard@piedpiper.com',
+      email,
       source_id: createdTokenId,
     });
 

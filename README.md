@@ -69,7 +69,8 @@ const culqi = new Culqi({
         amount: '10000',
         currency_code: 'PEN',
         email: 'richard@piedpiper.com',
-        id: 'tkn_test_xxxxxxxxxxxxxxxx',
+        source_id: 'tkn_test_xxxxxxxxxxxxxxxx',
+        capture: false,
     });
     
     // Do some other operations, such as custom self-made fraud prevention

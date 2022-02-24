@@ -10,6 +10,8 @@ const uniqueEmail =
   Math.random().toString(36).substring(2, 15) +
   '@domain.com';
 
+const email = `richard-${Date.now()}@piedpiper.com`;
+
 describe('cards', () => {
   let publicKey: string;
   let privateKey: string;
@@ -30,7 +32,7 @@ describe('cards', () => {
         cvv: '123',
         expiration_month: '09',
         expiration_year: '2025',
-        email: 'richard@piedpiper.com',
+        email,
       }),
       await customers.createCustomer({
         first_name: 'Richard',
