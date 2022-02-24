@@ -13,3 +13,6 @@ script:
 - npm run test:coverage
 after_script:
 - npm run coveralls
+branches:
+  only:
+    - master
