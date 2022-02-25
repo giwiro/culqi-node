@@ -8,8 +8,8 @@
     "release": "npm run build && node scripts/prepublish.js && npm publish ./dist",
     "build": "tsc --project ./tsconfig.json",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test": "jest --runInBand",
+    "test:coverage": "npm test -- --coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "repository": {

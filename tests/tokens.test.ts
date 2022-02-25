@@ -2,8 +2,7 @@ import {tokens} from '../src/tokens';
 import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
-
-const email = `richard-${Date.now()}@piedpiper.com`;
+import {generateCreateTokenRequest} from './utils/card';
 
 describe('tokens', () => {
   let publicKey: string;
@@ -22,30 +21,15 @@ describe('tokens', () => {
   describe('createToken', () => {
     it('should change path', () => {
       const mockedHttps = httpMockFactory();
-      tokens.createToken(
-        {
-          card_number: '4111111111111111',
-          cvv: '123',
-          expiration_month: '09',
-          expiration_year: '2025',
-          email,
-        },
-        {
-          _httpProvider: mockedHttps,
-        }
-      );
+      tokens.createToken(generateCreateTokenRequest(), {
+        _httpProvider: mockedHttps,
+      });
       const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
       expect(c.path).toMatchSnapshot();
     });
 
     it('should create token', async () => {
-      const resp = await tokens.createToken({
-        card_number: '4111111111111111',
-        cvv: '123',
-        expiration_month: '09',
-        expiration_year: '2025',
-        email,
-      });
+      const resp = await tokens.createToken(generateCreateTokenRequest());
       createdTokenId = resp.id;
       expect(resp.object).toMatchSnapshot();
       expect(resp.type).toMatchSnapshot();

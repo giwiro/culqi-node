@@ -21,8 +21,11 @@ describe('request', () => {
     }
   });
 
-  it('no options', () => {
-    request('/');
+  it('no options', async () => {
+    try {
+      await request('/');
+      // tslint:disable-next-line:no-empty
+    } catch (e) {}
     expect(true).toBeTruthy();
   });
 

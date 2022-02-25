@@ -1,16 +1,16 @@
 import {charges} from '../src/charges';
 import vars from '../src/vars';
-import {tokens} from '../src/tokens';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
-
-const email = `richard-${Date.now()}@piedpiper.com`;
+import {generateCreateTokenRequest} from './utils/card';
+import {getToken} from './utils/token';
 
 describe('charges', () => {
   let publicKey: string;
   let privateKey: string;
 
   let createdTokenId: string;
+  const email = generateCreateTokenRequest().email;
   let createdChargeId: string;
 
   beforeAll(async () => {
@@ -18,14 +18,9 @@ describe('charges', () => {
     publicKey = process.env.CULQI_PUBLIC_KEY || '';
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
-    const resp = await tokens.createToken({
-      card_number: '4111111111111111',
-      cvv: '123',
-      expiration_month: '09',
-      expiration_year: '2025',
-      email,
-    });
-    createdTokenId = resp.id;
+
+    const token = await getToken();
+    createdTokenId = token.id;
   });
 
   beforeEach(() => {
@@ -122,7 +117,7 @@ describe('charges', () => {
         {
           id: createdChargeId,
           metadata: {
-            foo: 'bar',
+            foo: 'barbarbarbarbarbarbarbarbar',
           },
         },
         {

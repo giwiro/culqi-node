@@ -1,18 +1,12 @@
 import {subscriptions} from '../src/subscriptions';
-import {tokens} from '../src/tokens';
 import {cards} from '../src/cards';
 import {plans} from '../src/plans';
 import {customers} from '../src/customers';
 import vars from '../src/vars';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
-
-const uniqueEmail =
-  Math.random().toString(36).substring(2, 15) +
-  Math.random().toString(36).substring(2, 15) +
-  '@domain.com';
-
-const email = `richard-${Date.now()}@piedpiper.com`;
+import {getToken} from './utils/token';
+import {getCustomer} from './utils/customer';
 
 describe('subscriptions', () => {
   let publicKey: string;
@@ -30,24 +24,7 @@ describe('subscriptions', () => {
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
 
-    const [token, customer] = [
-      await tokens.createToken({
-        card_number: '4111111111111111',
-        cvv: '123',
-        expiration_month: '09',
-        expiration_year: '2025',
-        email,
-      }),
-      await customers.createCustomer({
-        first_name: 'Richard',
-        last_name: 'Hendricks',
-        email: uniqueEmail,
-        address: 'San Francisco Bay Area',
-        address_city: 'Palo Alto',
-        country_code: 'US',
-        phone_number: '6505434800',
-      }),
-    ];
+    const [token, customer] = [await getToken(), await getCustomer()];
 
     createdTokenId = token.id;
     createdCustomerId = customer.id;
@@ -98,7 +75,7 @@ describe('subscriptions', () => {
       const mockedHttps = httpMockFactory();
       subscriptions.createSubscription(
         {
-          card_id: 'carg_id',
+          card_id: 'card_id',
           plan_id: 'plan_id',
         },
         {
