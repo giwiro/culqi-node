@@ -33,7 +33,7 @@ const culqi = new Culqi({
 
 ### Common operations
 In a regular flow, some other culqi frontend library such as the [Android](https://github.com/culqi/culqi-android) or 
-[CulqiJS](https://www.culqi.com/docs/#/pagos/js), would generate the token in a "safe" way. That token is gonna be
+[CulqiJS](https://www.culqi.com/docs/#/pagos/js), would generate the token in a "safe" way. That token is going to be
 the input for generating charges.
 
 #### Create charge

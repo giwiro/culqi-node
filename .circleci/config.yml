@@ -23,3 +23,13 @@ jobs:
           command: |
             npm run coveralls
 
+
+workflows:
+  execute_tests:
+    jobs:
+      - run_tests:
+          filters:
+            branches:
+              only:
+                - master
+                - dev
