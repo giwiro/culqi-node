@@ -1,9 +1,10 @@
 import vars from '../src/vars';
-import {tokens} from '../src/tokens';
 import {charges} from '../src/charges';
 import {refunds} from '../src/refunds';
 import {httpMockFactory} from './request/__mocks__';
 import {RequestOptions} from 'https';
+import {generateCreateTokenRequest} from './utils/card';
+import {getToken} from './utils/token';
 
 describe('refunds', () => {
   let publicKey: string;
@@ -19,23 +20,14 @@ describe('refunds', () => {
     vars.privateKey = privateKey;
     vars.publicKey = publicKey;
 
-    const token = await tokens.createToken({
-      card_number: '4111111111111111',
-      cvv: '123',
-      expiration_month: '09',
-      expiration_year: '2025',
-      email: 'richard@piedpiper.com',
-    });
-
-    createdTokenId = token.id;
-
+    const token = await getToken();
     const charge = await charges.createCharge({
       amount: '10000',
       currency_code: 'PEN',
-      email: 'richard@piedpiper.com',
-      source_id: createdTokenId,
+      email: generateCreateTokenRequest().email,
+      source_id: token.id,
     });
-
+    createdTokenId = token.id;
     createdChargeId = charge.id;
   });
 
