@@ -24,7 +24,7 @@ const diners: Partial<CreateTokenRequest> = {
   expiration_month: '04',
 };
 
-const cards = [mastercard, american, diners];
+const cards = [visa, mastercard, american, diners];
 
 export function generateCreateTokenRequest(): CreateTokenRequest {
   const email = `richard-${Date.now()}-${Math.floor(

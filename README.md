@@ -4,7 +4,7 @@
 Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written in typescript using pure Node.js api with 0 runtime dependencies.
 
 [![npm version](https://badge.fury.io/js/culqi-node.svg)](https://badge.fury.io/js/culqi-node)
-[![Build Status](https://travis-ci.org/giwiro/culqi-node.svg?branch=master)](https://travis-ci.org/giwiro/culqi-node)
+[![Build Status](https://circleci.com/gh/giwiro/culqi-node.svg?style=shield)](https://app.circleci.com/pipelines/github/giwiro/culqi-node?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/giwiro/culqi-node/badge.svg?branch=master)](https://coveralls.io/github/giwiro/culqi-node?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![types](https://img.shields.io/npm/types/culqi-node)]()
