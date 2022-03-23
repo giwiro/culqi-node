@@ -9,6 +9,7 @@ Node.js wrapper for [Culqi](https://www.culqi.com/) web services. It is written 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![types](https://img.shields.io/npm/types/culqi-node)]()
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Known Vulnerabilities](https://snyk.io/test/github/giwiro/culqi-node/badge.svg)](https://snyk.io/test/github/giwiro/culqi-node)
 
 ### Install
 ```sh
