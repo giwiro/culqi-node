@@ -26,9 +26,12 @@ describe('cards', () => {
   });
 
   afterAll(async () => {
-    await customers.deleteCustomer({
-      id: createdCustomerId,
-    });
+    try {
+      await customers.deleteCustomer({
+        id: createdCustomerId,
+      });
+      // tslint:disable-next-line:no-empty
+    } catch (e) {}
   });
 
   beforeEach(() => {
