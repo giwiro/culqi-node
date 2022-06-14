@@ -50,7 +50,7 @@ const culqi = new Culqi({
         amount: '10000',
         currency_code: 'PEN',
         email: 'richard@piedpiper.com',
-        id: 'tkn_test_xxxxxxxxxxxxxxxx',
+        source_id: 'tkn_test_xxxxxxxxxxxxxxxx',
     });
 
     console.log(charge.id);
