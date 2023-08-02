@@ -80,12 +80,12 @@ export const subscriptions = {
   createSubscription: (
     req: CreateSubscriptionRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
-  ) => post<Plan>(vars.basePaths.subscriptions, req, extraHttpOptions),
+  ) => post<Subscription>(vars.basePaths.subscriptions, req, extraHttpOptions),
   getSubscription: (
     req: GetSubscriptionRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    get<Plan>(
+    get<Subscription>(
       `${vars.basePaths.subscriptions}/${req.id}`,
       undefined,
       extraHttpOptions
@@ -103,7 +103,7 @@ export const subscriptions = {
     req: UpdateSubscriptionRequest,
     extraHttpOptions?: Partial<HttpRequestOptions>
   ) =>
-    patch<Plan>(
+    patch<Subscription>(
       `${vars.basePaths.subscriptions}/${req.id}`,
       req,
       extraHttpOptions
