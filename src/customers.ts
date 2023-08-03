@@ -15,7 +15,7 @@ export type Customer = {
     phone: string;
     object: string;
   };
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateCustomerRequest = {
@@ -60,7 +60,7 @@ export type GetCustomersResponse = {
 
 export type UpdateCustomerRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type DeleteCustomerRequest = {
@@ -93,7 +93,7 @@ export const customers = {
   ) =>
     get<GetCustomersResponse>(
       vars.basePaths.customers,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateCustomer: (

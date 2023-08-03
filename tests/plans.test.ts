@@ -1,7 +1,7 @@
 import {plans} from '../src/plans';
 import vars from '../src/vars';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
+import {HttpProvider} from '../src/request';
 
 describe('plans', () => {
   let publicKey: string;
@@ -30,10 +30,10 @@ describe('plans', () => {
           limit: 12,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -59,10 +59,10 @@ describe('plans', () => {
           id: createdPlanId,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.plans}/${createdPlanId}`
       );
@@ -84,10 +84,10 @@ describe('plans', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -110,10 +110,10 @@ describe('plans', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.plans}/${createdPlanId}`
       );
@@ -141,10 +141,10 @@ describe('plans', () => {
           id: createdPlanId,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.plans}/${createdPlanId}`
       );

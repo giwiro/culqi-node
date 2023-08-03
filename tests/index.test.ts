@@ -3,12 +3,14 @@ import vars from '../src/vars';
 
 describe('Culqi', () => {
   it('should throw error if privateKey is not set', () => {
+    let error;
     try {
       // tslint:disable-next-line:no-unused-expression
       new Culqi();
     } catch (e) {
-      expect(e).toMatchSnapshot();
+      error = e;
     }
+    expect(error).toMatchSnapshot();
   });
 
   it('should set private key', () => {
@@ -20,6 +22,7 @@ describe('Culqi', () => {
   });
 
   it('should throw error if pciCompliant is true but no public key was provided', () => {
+    let error;
     try {
       // tslint:disable-next-line:no-unused-expression
       new Culqi({
@@ -27,11 +30,13 @@ describe('Culqi', () => {
         pciCompliant: true,
       });
     } catch (e) {
-      expect(e).toMatchSnapshot();
+      error = e;
     }
+    expect(error).toMatchSnapshot();
   });
 
   it('should throw error if publicKey is provided but pciCompliant is not true', () => {
+    let error;
     try {
       // tslint:disable-next-line:no-unused-expression
       new Culqi({
@@ -39,8 +44,9 @@ describe('Culqi', () => {
         publicKey: 'abc',
       });
     } catch (e) {
-      expect(e).toMatchSnapshot();
+      error = e;
     }
+    expect(error).toMatchSnapshot();
   });
 
   it('should set privateKey and publicKey', () => {

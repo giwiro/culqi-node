@@ -34,10 +34,10 @@ export type Charge = {
   dispute: boolean;
   capture: boolean;
   reference_code: string;
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
   total_fee: number;
   fee_details: {
-    fixed_fee: {};
+    fixed_fee: Record<string, string | number>;
     variable_fee: {
       currency_code: string;
       commision: number;
@@ -59,7 +59,7 @@ export type CreateChargeRequest = {
   capture?: boolean;
   description?: string;
   installments?: number;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
   antifraud_details?: {
     first_name: string;
     last_name: string;
@@ -130,7 +130,7 @@ export type GetChargesResponse = {
 
 export type UpdateChargeRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type CaptureChargeRequest = {
@@ -157,7 +157,7 @@ export const charges = {
   ) =>
     get<GetChargesResponse>(
       vars.basePaths.charges,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateCharge: (

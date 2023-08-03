@@ -1,7 +1,7 @@
 import {orders} from '../src/orders';
 import vars from '../src/vars';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
+import {HttpProvider} from '../src/request';
 
 const d = new Date();
 // add a day
@@ -45,10 +45,10 @@ describe('orders', () => {
           expiration_date: expirationDate,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -80,21 +80,14 @@ describe('orders', () => {
           id: 'order_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toBe(
         `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id/confirm`
       );
     });
-
-    /*it('should confirm order', async () => {
-      const order = await orders.confirmOrder({
-        id: createdOrderId,
-      });
-      expect(order.state).toBe('confirmado');
-    });*/
   });
 
   describe('getOrder', () => {
@@ -105,10 +98,10 @@ describe('orders', () => {
           id: 'order_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );
@@ -130,10 +123,10 @@ describe('orders', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -156,10 +149,10 @@ describe('orders', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );
@@ -187,10 +180,10 @@ describe('orders', () => {
           id: 'order_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.orders}/order_id`
       );

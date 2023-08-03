@@ -1,10 +1,10 @@
 import {customers} from '../src/customers';
 import {cards} from '../src/cards';
 import vars from '../src/vars';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
 import {getCustomer} from './utils/customer';
 import {getToken} from './utils/token';
+import {HttpProvider} from '../src/request';
 
 describe('cards', () => {
   let publicKey: string;
@@ -51,10 +51,10 @@ describe('cards', () => {
           token_id: 'token_id_sample',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -76,10 +76,10 @@ describe('cards', () => {
           id: 'createdCardId',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.cards}/createdCardId`
       );
@@ -101,10 +101,10 @@ describe('cards', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -127,10 +127,10 @@ describe('cards', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.cards}/createdCardId`
       );
@@ -158,10 +158,10 @@ describe('cards', () => {
           id: 'createdCardId',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.cards}/createdCardId`
       );

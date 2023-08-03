@@ -18,7 +18,7 @@ export type Order = {
   updated_at: number;
   paid_at: number;
   available_on: null;
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateOrderRequest = {
@@ -72,7 +72,7 @@ export type GetOrdersResponse = {
 export type UpdateOrderRequest = {
   id: string;
   expiration_date?: number;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type DeleteOrderRequest = {
@@ -114,7 +114,7 @@ export const orders = {
   ) =>
     get<GetOrdersResponse>(
       vars.basePaths.orders,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateOrder: (

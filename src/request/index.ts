@@ -3,16 +3,18 @@ import querystring from 'querystring';
 import {RequestOptions, IncomingMessage} from 'http';
 import vars from '../vars';
 
-type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+export type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+
+export type HttpProvider = typeof https;
 
 export type HttpRequestOptions = {
   method?: RequestMethod;
   useSecureEndpoint?: true;
-  headers?: {[key: string]: string};
-  queryParams?: {[key: string]: string};
-  body?: {[key: string]: any};
+  headers?: Record<string, string>;
+  queryParams?: Record<string, string>;
+  body?: Record<string, unknown>;
   // This is for testing purposes only
-  _httpProvider?: any;
+  _httpProvider?: HttpProvider;
 };
 
 function _httpResponseCallback<T>(
@@ -91,7 +93,7 @@ function request<T>(path: string, options?: HttpRequestOptions): Promise<T> {
 
 function get<T>(
   path: string,
-  queryParams?: {[key: string]: string},
+  queryParams?: Record<string, string>,
   options?: Partial<HttpRequestOptions>
 ): Promise<T> {
   return request<T>(path, {...options, queryParams, method: 'GET'});
@@ -99,7 +101,7 @@ function get<T>(
 
 function post<T>(
   path: string,
-  body?: {[key: string]: any},
+  body?: Record<string, unknown>,
   options?: Partial<HttpRequestOptions>
 ): Promise<T> {
   return request<T>(path, {...options, body, method: 'POST'});
@@ -114,7 +116,7 @@ function delete_<T>(
 
 function patch<T>(
   path: string,
-  body?: {[key: string]: any},
+  body?: Record<string, unknown>,
   options?: Partial<HttpRequestOptions>
 ): Promise<T> {
   return request<T>(path, {...options, body, method: 'PATCH'});

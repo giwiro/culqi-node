@@ -33,7 +33,7 @@ export type Card = {
     device_fingerprint: string;
     device_type: string;
   };
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateCardRequest = {
@@ -74,7 +74,7 @@ export type GetCardsResponse = {
 
 export type UpdateCardRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type DeleteCardRequest = {
@@ -103,7 +103,7 @@ export const cards = {
   ) =>
     get<GetCardsResponse>(
       vars.basePaths.cards,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateCard: (

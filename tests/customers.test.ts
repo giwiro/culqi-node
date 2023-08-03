@@ -1,7 +1,7 @@
 import {customers} from '../src/customers';
 import vars from '../src/vars';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
+import {HttpProvider} from '../src/request';
 
 const uniqueEmail =
   Math.random().toString(36).substring(2, 15) +
@@ -36,10 +36,10 @@ describe('customers', () => {
           phone_number: '6505434800',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -66,10 +66,10 @@ describe('customers', () => {
           id: createdCustomerId,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.customers}/${createdCustomerId}`
       );
@@ -91,10 +91,10 @@ describe('customers', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -117,10 +117,10 @@ describe('customers', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.customers}/${createdCustomerId}`
       );
@@ -148,10 +148,10 @@ describe('customers', () => {
           id: createdCustomerId,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.customers}/${createdCustomerId}`
       );

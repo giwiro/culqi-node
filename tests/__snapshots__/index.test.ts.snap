@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Culqi should have cards property 1`] = `
-Object {
+{
   "createCard": [Function],
   "deleteCard": [Function],
   "getCard": [Function],
@@ -11,7 +11,7 @@ Object {
 `;
 
 exports[`Culqi should have charges property 1`] = `
-Object {
+{
   "captureCharge": [Function],
   "createCharge": [Function],
   "getCharge": [Function],
@@ -21,7 +21,7 @@ Object {
 `;
 
 exports[`Culqi should have customers property 1`] = `
-Object {
+{
   "createCustomer": [Function],
   "deleteCustomer": [Function],
   "getCustomer": [Function],
@@ -31,14 +31,14 @@ Object {
 `;
 
 exports[`Culqi should have events property 1`] = `
-Object {
+{
   "getEvent": [Function],
   "getEvents": [Function],
 }
 `;
 
 exports[`Culqi should have orders property 1`] = `
-Object {
+{
   "confirmOrder": [Function],
   "createOrder": [Function],
   "deleteOrder": [Function],
@@ -49,7 +49,7 @@ Object {
 `;
 
 exports[`Culqi should have plans property 1`] = `
-Object {
+{
   "createPlan": [Function],
   "deletePlan": [Function],
   "getPlan": [Function],
@@ -59,7 +59,7 @@ Object {
 `;
 
 exports[`Culqi should have refunds property 1`] = `
-Object {
+{
   "createRefund": [Function],
   "getRefund": [Function],
   "getRefunds": [Function],
@@ -68,7 +68,7 @@ Object {
 `;
 
 exports[`Culqi should have subscriptions property 1`] = `
-Object {
+{
   "createSubscription": [Function],
   "deleteSubscription": [Function],
   "getSubscription": [Function],
@@ -78,7 +78,7 @@ Object {
 `;
 
 exports[`Culqi should have tokens property 1`] = `
-Object {
+{
   "createToken": [Function],
   "getToken": [Function],
   "getTokens": [Function],

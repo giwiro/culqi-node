@@ -1,16 +1,16 @@
 import vars from '../src/vars';
 import {charges} from '../src/charges';
 import {refunds} from '../src/refunds';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
 import {generateCreateTokenRequest} from './utils/card';
 import {getToken} from './utils/token';
+import {HttpProvider} from '../src/request';
 
 describe('refunds', () => {
   let publicKey: string;
   let privateKey: string;
 
-  let createdTokenId: string;
+  // let createdTokenId: string;
   let createdChargeId: string;
   let createdRefundId: string;
 
@@ -27,7 +27,7 @@ describe('refunds', () => {
       email: generateCreateTokenRequest().email,
       source_id: token.id,
     });
-    createdTokenId = token.id;
+    // createdTokenId = token.id;
     createdChargeId = charge.id;
   });
 
@@ -49,10 +49,10 @@ describe('refunds', () => {
           reason: 'fraudulento',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -75,10 +75,10 @@ describe('refunds', () => {
           id: createdRefundId,
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toBe(
         `${vars.baseEndpoint.basePath}${vars.basePaths.refunds}/${createdRefundId}`
       );
@@ -100,10 +100,10 @@ describe('refunds', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -126,10 +126,10 @@ describe('refunds', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.refunds}/${createdRefundId}`
       );

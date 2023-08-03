@@ -8,7 +8,7 @@ export type Refund = {
   creation_date: number;
   amount: number;
   reason: string;
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateRefundRequest = {
@@ -46,7 +46,7 @@ export type GetRefundsResponse = {
 
 export type UpdateRefundRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export const refunds = {
@@ -69,7 +69,7 @@ export const refunds = {
   ) =>
     get<GetRefundsResponse>(
       vars.basePaths.refunds,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateRefunds: (

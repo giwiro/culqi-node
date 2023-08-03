@@ -3,10 +3,10 @@ import {cards} from '../src/cards';
 import {plans} from '../src/plans';
 import {customers} from '../src/customers';
 import vars from '../src/vars';
-import {httpMockFactory} from './request/__mocks__';
-import {RequestOptions} from 'https';
+import {httpMockFactory} from './utils/request';
 import {getToken} from './utils/token';
 import {getCustomer} from './utils/customer';
+import {HttpProvider} from '../src/request';
 
 describe('subscriptions', () => {
   let publicKey: string;
@@ -52,14 +52,12 @@ describe('subscriptions', () => {
     await cards.deleteCard({
       id: createdCardId,
     });
-    const [r, r2] = [
-      await customers.deleteCustomer({
-        id: createdCustomerId,
-      }),
-      await plans.deletePlan({
-        id: createdPlanId,
-      }),
-    ];
+    await customers.deleteCustomer({
+      id: createdCustomerId,
+    });
+    await plans.deletePlan({
+      id: createdPlanId,
+    });
   });
 
   beforeEach(() => {
@@ -79,10 +77,10 @@ describe('subscriptions', () => {
           plan_id: 'plan_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -104,10 +102,10 @@ describe('subscriptions', () => {
           id: 'subscription_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.subscriptions}/subscription_id`
       );
@@ -129,10 +127,10 @@ describe('subscriptions', () => {
           limit: '2',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatchSnapshot();
     });
 
@@ -155,10 +153,10 @@ describe('subscriptions', () => {
           },
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.subscriptions}/subscription_id`
       );
@@ -186,10 +184,10 @@ describe('subscriptions', () => {
           id: 'subscription_id',
         },
         {
-          _httpProvider: mockedHttps,
+          _httpProvider: mockedHttps as unknown as HttpProvider,
         }
       );
-      const c = mockedHttps.request.mock.calls[0][0] as RequestOptions;
+      const c = mockedHttps.request.mock.calls[0][0];
       expect(c.path).toMatch(
         `${vars.baseEndpoint.basePath}${vars.basePaths.subscriptions}/subscription_id`
       );

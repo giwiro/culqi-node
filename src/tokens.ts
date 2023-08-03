@@ -33,7 +33,7 @@ export type Token = {
     device_fingerprint: string;
     device_type: string;
   };
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateTokenRequest = {
@@ -42,7 +42,7 @@ export type CreateTokenRequest = {
   expiration_month: string;
   expiration_year: string;
   email: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type GetTokenRequest = {
@@ -77,7 +77,7 @@ export type GetTokensResponse = {
 
 export type UpdateTokenRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export const tokens = {
@@ -95,7 +95,7 @@ export const tokens = {
   ) =>
     get<GetTokensResponse>(
       vars.basePaths.tokens,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   getToken: (

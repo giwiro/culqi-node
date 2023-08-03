@@ -14,7 +14,7 @@ export type Plan = {
   limit: number;
   trial_days: number;
   total_subscriptions: number;
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreatePlanRequest = {
@@ -56,7 +56,7 @@ export type GetPlansResponse = {
 
 export type UpdatePlanRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type DeletePlanRequest = {
@@ -85,7 +85,7 @@ export const plans = {
   ) =>
     get<GetPlansResponse>(
       vars.basePaths.plans,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updatePlan: (

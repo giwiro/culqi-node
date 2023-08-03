@@ -7,6 +7,7 @@ module.exports = {
 
   // Stop running tests after `n` failures
   // bail: 0,
+  bail: true,
 
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "/private/var/folders/jl/hrp_r4697kj4976bm_mn28380000gn/T/jest_dx",
@@ -21,14 +22,10 @@ module.exports = {
   // collectCoverageFrom: undefined,
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "coverage",
+  coverageDirectory: 'coverage',
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
-    "/dist/",
-    "/tests/utils/"
-  ],
+  coveragePathIgnorePatterns: ['/node_modules/', '/dist/', '/tests/utils/'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -61,6 +58,7 @@ module.exports = {
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",
+  maxWorkers: 1,
 
   // An array of directory names to be searched recursively up from the requiring module's location
   // moduleDirectories: [
@@ -91,7 +89,7 @@ module.exports = {
 
   // A preset that is used as a base for Jest's configuration
   // preset: undefined,
-  preset: "ts-jest",
+  preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -132,7 +130,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: 'node',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -147,11 +145,7 @@ module.exports = {
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: [
-    "/node_modules/",
-    "/dist/",
-    "/tests/utils/"
-  ],
+  testPathIgnorePatterns: ['/node_modules/', '/dist/', '/tests/utils/'],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],

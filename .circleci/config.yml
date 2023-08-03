@@ -1,15 +1,18 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@5.0.2
+
 jobs:
   run_tests:
-    docker:
-      - image: circleci/node:17
+#    docker:
+#      - image: circleci/node:17
+    executor: node/default
     steps:
       - checkout
-      - run:
-          name: Install npm dependencies
-          command: |
-            npm ci
+      - node/install:
+          node-version: 18
+      - node/install-packages
       - run:
           name: Run lint
           command: |

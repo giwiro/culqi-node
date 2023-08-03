@@ -22,7 +22,7 @@ export type Subscription = {
   charges: Charge[];
   plan: Plan;
   card: Card;
-  metadata: {[key: string]: string};
+  metadata: Record<string, string>;
 };
 
 export type CreateSubscriptionRequest = {
@@ -63,7 +63,7 @@ export type GetSubscriptionsResponse = {
 
 export type UpdateSubscriptionRequest = {
   id: string;
-  metadata?: {[key: string]: string};
+  metadata?: Record<string, string>;
 };
 
 export type DeleteSubscriptionRequest = {
@@ -96,7 +96,7 @@ export const subscriptions = {
   ) =>
     get<GetSubscriptionsResponse>(
       vars.basePaths.subscriptions,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
   updateSubscription: (

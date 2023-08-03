@@ -4,7 +4,7 @@ import vars from './vars';
 export type Event = {
   object: string;
   type: string;
-  data: {[key: string]: any};
+  data: Record<string, unknown>;
 };
 
 export type GetEventRequest = {
@@ -50,7 +50,7 @@ export const events = {
   ) =>
     get<GetEventsResponse>(
       vars.basePaths.events,
-      req as {[key: string]: string},
+      req as Record<string, string>,
       extraHttpOptions
     ),
 };
