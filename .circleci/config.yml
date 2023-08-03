@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: 18
+          node-version: '18'
       - node/install-packages
       - run:
           name: Run lint
