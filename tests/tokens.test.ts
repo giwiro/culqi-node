@@ -3,6 +3,7 @@ import vars from '../src/vars';
 import {httpMockFactory} from './utils/request';
 import {generateCreateTokenRequest} from './utils/card';
 import {HttpProvider} from '../src/request';
+import {sleep} from './utils/time';
 
 describe('tokens', () => {
   let publicKey: string;
@@ -29,6 +30,7 @@ describe('tokens', () => {
     });
 
     it('should create token', async () => {
+      await sleep(5000);
       const resp = await tokens.createToken(generateCreateTokenRequest());
       createdTokenId = resp.id;
       expect(resp.object).toMatchSnapshot();

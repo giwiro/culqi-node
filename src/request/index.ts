@@ -20,7 +20,7 @@ export type HttpRequestOptions = {
 function _httpResponseCallback<T>(
   res: IncomingMessage,
   resolve: (r: T) => void,
-  reject: (e: Error | object) => void
+  reject: (e: Error) => void
 ) {
   let buffer = '';
   const statusCode = res.statusCode;
@@ -29,14 +29,12 @@ function _httpResponseCallback<T>(
 
   res.on('end', () => {
     let r;
-    if (buffer && buffer.length) {
-      try {
-        r = JSON.parse(buffer);
-      } catch (e) {
-        return reject(
-          new Error(`Response was not a valid JSON. Response: ${buffer}`)
-        );
-      }
+    try {
+      r = JSON.parse(buffer);
+    } catch (e) {
+      return reject(
+        new Error(`Response was not a valid JSON. Response: ${buffer}`)
+      );
     }
     if (typeof statusCode !== 'number')
       return reject(new Error('Status code is undefined'));
@@ -68,9 +66,9 @@ function request<T>(path: string, options?: HttpRequestOptions): Promise<T> {
 
   if (options) {
     if (options.useSecureEndpoint) {
-      if (!vars.publicKey) throw new Error("Provide 'publicKey' property");
       opts.host = vars.baseSecureEndpoint.domain;
       opts.path = `${vars.baseSecureEndpoint.basePath}${path}`;
+      if (!vars.publicKey) throw new Error("Provide 'publicKey' property");
       opts.headers = {
         ...opts.headers,
         Authorization: `Bearer ${vars.publicKey}`,

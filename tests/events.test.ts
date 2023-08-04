@@ -27,11 +27,12 @@ describe('events', () => {
       expect(c.path).toMatchSnapshot();
     });
 
+    // timeout Culqi
     // eslint-disable-next-line jest/no-commented-out-tests
-    /*it('should get events', async () => {
+    it('should get events', async () => {
       const resp = await events.getEvents();
       expect(resp.data.length).toBeGreaterThanOrEqual(0);
-    });*/
+    });
   });
 
   describe('getEvent', () => {

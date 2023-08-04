@@ -24,15 +24,20 @@ const diners: Partial<CreateTokenRequest> = {
   expiration_month: '04',
 };
 
-const cards = [mastercard, visa, american, diners];
+const cards = [visa, mastercard, american, diners];
 
 export function generateCreateTokenRequest(): CreateTokenRequest {
-  const email = `richard-${Date.now()}-${Math.floor(
+  const email = `dinesh-${Date.now()}-${Math.floor(
     Math.random() * 100000
   )}@piedpiper.com`;
+  // const email = 'richard@piedpiper.com';
 
   const cardInfo =
     cards[Math.floor(Math.random() * cards.length) % cards.length];
+  // Trying only with visa (Culqi's fault)
+  // const cardInfo = visa;
+
+  console.log(`[email=${email}][card_number=${cardInfo.card_number}]`);
 
   // tslint:disable-next-line:no-object-literal-type-assertion
   return {
